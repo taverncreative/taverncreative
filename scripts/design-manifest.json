@@ -1,0 +1,1522 @@
+[
+  {
+    "name": "Autumn",
+    "slug": "autumn",
+    "style_tags": [
+      "botanical",
+      "traditional"
+    ],
+    "colour_tags": [
+      "terracotta",
+      "burgundy"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "heading",
+        "label": "Save the Date",
+        "original_text": "Save the Date",
+        "y_mm": 43.2,
+        "font_size": 46.9,
+        "font": "Rosse"
+      },
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "PENELOPE & WILSON",
+        "y_mm": 73.9,
+        "font_size": 7.1,
+        "font": "TBrook"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "24 | 07 | 26",
+        "y_mm": 77.7,
+        "font_size": 19.6,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/autumn/artwork.png",
+      "preview": "/designs/autumn/preview.png",
+      "thumbnail": "/designs/autumn/thumbnail.png",
+      "product": "/designs/autumn/product.png"
+    },
+    "alt_text": "Autumn save the date card featuring botanical and traditional design elements in terracotta, burgundy tones",
+    "product_name": "Autumn Save the Date",
+    "product_description": "Announce your wedding with our stunning Autumn save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Autumn Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Autumn save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Autumn Save the Date",
+      "description": "Announce your wedding with our stunning Autumn save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/autumn/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/autumn-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Blue Roses",
+    "slug": "blue-roses",
+    "style_tags": [
+      "botanical",
+      "romantic"
+    ],
+    "colour_tags": [
+      "blues",
+      "pinks"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "S AV E  T H E  DAT E",
+        "y_mm": 77.2,
+        "font_size": 34.0,
+        "font": "BemboStd"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "K I R S T Y  &  D AV I D  |  0 1 . 1 0 . 2 6  |  D OV E R ,  K E N T",
+        "y_mm": 94.2,
+        "font_size": 7.0,
+        "font": "Montserrat-Thin"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "I N V I TAT I O N S  T O  F O L L OW",
+        "y_mm": 100.1,
+        "font_size": 7.0,
+        "font": "Montserrat-Thin"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/blue-roses/artwork.png",
+      "preview": "/designs/blue-roses/preview.png",
+      "thumbnail": "/designs/blue-roses/thumbnail.png",
+      "product": "/designs/blue-roses/product.png"
+    },
+    "alt_text": "Blue Roses save the date card featuring botanical and romantic design elements in blues, pinks tones",
+    "product_name": "Blue Roses Save the Date",
+    "product_description": "Announce your wedding with our stunning Blue Roses save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Blue Roses Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Blue Roses save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Blue Roses Save the Date",
+      "description": "Announce your wedding with our stunning Blue Roses save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/blue-roses/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/blue-roses-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Blush Floral 2",
+    "slug": "blush-floral-2",
+    "style_tags": [
+      "botanical",
+      "romantic"
+    ],
+    "colour_tags": [
+      "pinks",
+      "neutrals"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [],
+    "files": {
+      "artwork": "/designs/blush-floral-2/artwork.png",
+      "preview": "/designs/blush-floral-2/preview.png",
+      "thumbnail": "/designs/blush-floral-2/thumbnail.png",
+      "product": "/designs/blush-floral-2/product.png"
+    },
+    "alt_text": "Blush Floral 2 save the date card featuring botanical and romantic design elements in pinks, neutrals tones",
+    "product_name": "Blush Floral 2 Save the Date",
+    "product_description": "Announce your wedding with our stunning Blush Floral 2 save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Blush Floral 2 Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Blush Floral 2 save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Blush Floral 2 Save the Date",
+      "description": "Announce your wedding with our stunning Blush Floral 2 save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/blush-floral-2/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/blush-floral-2-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Blush Floral",
+    "slug": "blush-floral",
+    "style_tags": [
+      "botanical",
+      "romantic"
+    ],
+    "colour_tags": [
+      "pinks",
+      "neutrals"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "S AV E  T H E  DAT E",
+        "y_mm": 44.6,
+        "font_size": 34.0,
+        "font": "BemboStd"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "B R E A N N A  &  M A S O N  |  0 1 . 0 7 . 2 6  |  M A Y F A I R ,  L O N D O N",
+        "y_mm": 62.7,
+        "font_size": 7.0,
+        "font": "TBrook"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "I N V I T A T I O N S  T O  F O L L O W",
+        "y_mm": 68.6,
+        "font_size": 7.0,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/blush-floral/artwork.png",
+      "preview": "/designs/blush-floral/preview.png",
+      "thumbnail": "/designs/blush-floral/thumbnail.png",
+      "product": "/designs/blush-floral/product.png"
+    },
+    "alt_text": "Blush Floral save the date card featuring botanical and romantic design elements in pinks, neutrals tones",
+    "product_name": "Blush Floral Save the Date",
+    "product_description": "Announce your wedding with our stunning Blush Floral save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Blush Floral Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Blush Floral save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Blush Floral Save the Date",
+      "description": "Announce your wedding with our stunning Blush Floral save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/blush-floral/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/blush-floral-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Bouquet",
+    "slug": "bouquet",
+    "style_tags": [
+      "botanical",
+      "traditional"
+    ],
+    "colour_tags": [
+      "pinks",
+      "greens"
+    ],
+    "width_mm": 128.3,
+    "height_mm": 171.3,
+    "fields": [
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "AOIFE & COLIN",
+        "y_mm": 138.2,
+        "font_size": 7.0,
+        "font": "TBrook"
+      },
+      {
+        "type": "date",
+        "label": "Date",
+        "original_text": "18.08.2021",
+        "y_mm": 148.7,
+        "font_size": 7.0,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/bouquet/artwork.png",
+      "preview": "/designs/bouquet/preview.png",
+      "thumbnail": "/designs/bouquet/thumbnail.png",
+      "product": "/designs/bouquet/product.png"
+    },
+    "alt_text": "Bouquet save the date card featuring botanical and traditional design elements in pinks, greens tones",
+    "product_name": "Bouquet Save the Date",
+    "product_description": "Announce your wedding with our stunning Bouquet save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Bouquet Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Bouquet save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Bouquet Save the Date",
+      "description": "Announce your wedding with our stunning Bouquet save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/bouquet/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/bouquet-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Calligraphy",
+    "slug": "calligraphy",
+    "style_tags": [
+      "traditional",
+      "romantic"
+    ],
+    "colour_tags": [
+      "neutrals"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "heading",
+        "label": "Save the Date",
+        "original_text": "Save The Date",
+        "y_mm": 35.4,
+        "font_size": 54.6,
+        "font": "Rosse"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "M E L I S S A  &  C A R L  |  2 1 . 0 9 . 2 2  |  I N V I T E  T O  F O L L O W",
+        "y_mm": 78.0,
+        "font_size": 7.2,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/calligraphy/artwork.png",
+      "preview": "/designs/calligraphy/preview.png",
+      "thumbnail": "/designs/calligraphy/thumbnail.png",
+      "product": "/designs/calligraphy/product.png"
+    },
+    "alt_text": "Calligraphy save the date card featuring traditional and romantic design elements in neutrals tones",
+    "product_name": "Calligraphy Save the Date",
+    "product_description": "Announce your wedding with our stunning Calligraphy save the date cards, with timeless, classic design details. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Calligraphy Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Calligraphy save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Calligraphy Save the Date",
+      "description": "Announce your wedding with our stunning Calligraphy save the date cards, with timeless, classic design details. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/calligraphy/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/calligraphy-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Confetti",
+    "slug": "confetti",
+    "style_tags": [
+      "modern"
+    ],
+    "colour_tags": [
+      "pinks",
+      "gold"
+    ],
+    "width_mm": 128.3,
+    "height_mm": 171.3,
+    "fields": [
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "JESSICA & MARSHALL",
+        "y_mm": 132.7,
+        "font_size": 6.5,
+        "font": "TBrook"
+      },
+      {
+        "type": "date",
+        "label": "Date",
+        "original_text": "29.09.22",
+        "y_mm": 135.9,
+        "font_size": 23.0,
+        "font": "TBrook"
+      },
+      {
+        "type": "venue",
+        "label": "Venue",
+        "original_text": "JOHNSON HALL, HOUSTON",
+        "y_mm": 145.3,
+        "font_size": 6.5,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/confetti/artwork.png",
+      "preview": "/designs/confetti/preview.png",
+      "thumbnail": "/designs/confetti/thumbnail.png",
+      "product": "/designs/confetti/product.png"
+    },
+    "alt_text": "Confetti save the date card featuring modern design elements in pinks, gold tones",
+    "product_name": "Confetti Save the Date",
+    "product_description": "Announce your wedding with our stunning Confetti save the date cards, with clean, contemporary styling. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Confetti Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Confetti save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Confetti Save the Date",
+      "description": "Announce your wedding with our stunning Confetti save the date cards, with clean, contemporary styling. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/confetti/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/confetti-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Delicate",
+    "slug": "delicate",
+    "style_tags": [
+      "minimal",
+      "romantic"
+    ],
+    "colour_tags": [
+      "neutrals",
+      "pinks"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "heading",
+        "label": "Save the Date",
+        "original_text": "SAVE THE DATE",
+        "y_mm": 44.3,
+        "font_size": 40.5,
+        "font": "BemboStd"
+      },
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "TILLY & JAMIE",
+        "y_mm": 67.0,
+        "font_size": 9.5,
+        "font": "BemboStd"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "A R E  G ET T I N G  M A R R IED",
+        "y_mm": 75.7,
+        "font_size": 9.5,
+        "font": "BemboStd"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "1 3 . 0 2 . 2 022",
+        "y_mm": 83.6,
+        "font_size": 9.5,
+        "font": "BemboStd"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/delicate/artwork.png",
+      "preview": "/designs/delicate/preview.png",
+      "thumbnail": "/designs/delicate/thumbnail.png",
+      "product": "/designs/delicate/product.png"
+    },
+    "alt_text": "Delicate save the date card featuring minimal and romantic design elements in neutrals, pinks tones",
+    "product_name": "Delicate Save the Date",
+    "product_description": "Announce your wedding with our stunning Delicate save the date cards, with an elegant, pared-back aesthetic. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Delicate Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Delicate save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Delicate Save the Date",
+      "description": "Announce your wedding with our stunning Delicate save the date cards, with an elegant, pared-back aesthetic. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/delicate/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/delicate-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Destination",
+    "slug": "destination",
+    "style_tags": [
+      "modern"
+    ],
+    "colour_tags": [
+      "neutrals",
+      "blues"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "Come fly with me...",
+        "y_mm": 50.0,
+        "font_size": 52.7,
+        "font": "beatiful-arwahstudio"
+      },
+      {
+        "type": "date",
+        "label": "Date",
+        "original_text": "TO ANTIGUA IN SEPTEMBER 2022",
+        "y_mm": 82.7,
+        "font_size": 7.0,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/destination/artwork.png",
+      "preview": "/designs/destination/preview.png",
+      "thumbnail": "/designs/destination/thumbnail.png",
+      "product": "/designs/destination/product.png"
+    },
+    "alt_text": "Destination save the date card featuring modern design elements in neutrals, blues tones",
+    "product_name": "Destination Save the Date",
+    "product_description": "Announce your wedding with our stunning Destination save the date cards, with clean, contemporary styling. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Destination Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Destination save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Destination Save the Date",
+      "description": "Announce your wedding with our stunning Destination save the date cards, with clean, contemporary styling. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/destination/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/destination-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Eucalyptus",
+    "slug": "eucalyptus",
+    "style_tags": [
+      "botanical",
+      "minimal"
+    ],
+    "colour_tags": [
+      "greens",
+      "neutrals"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "heading",
+        "label": "Save the Date",
+        "original_text": "save the date",
+        "y_mm": 56.1,
+        "font_size": 44.7,
+        "font": "aAutoSignature"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "M A I S I E  &  S C O T T  |  0 1 . 0 7. 2 6  |  B R I G H T O N  B E A C H",
+        "y_mm": 74.9,
+        "font_size": 7.0,
+        "font": "Montserrat-Thin"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "I N V I TAT I O N S  T O  F O L L OW",
+        "y_mm": 80.8,
+        "font_size": 7.0,
+        "font": "Montserrat-Thin"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/eucalyptus/artwork.png",
+      "preview": "/designs/eucalyptus/preview.png",
+      "thumbnail": "/designs/eucalyptus/thumbnail.png",
+      "product": "/designs/eucalyptus/product.png"
+    },
+    "alt_text": "Eucalyptus save the date card featuring botanical and minimal design elements in greens, neutrals tones",
+    "product_name": "Eucalyptus Save the Date",
+    "product_description": "Announce your wedding with our stunning Eucalyptus save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Eucalyptus Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Eucalyptus save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Eucalyptus Save the Date",
+      "description": "Announce your wedding with our stunning Eucalyptus save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/eucalyptus/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/eucalyptus-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Fiery",
+    "slug": "fiery",
+    "style_tags": [
+      "modern"
+    ],
+    "colour_tags": [
+      "terracotta",
+      "burgundy"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "heading",
+        "label": "Save the Date",
+        "original_text": "SAVE THE DATE",
+        "y_mm": 44.0,
+        "font_size": 40.5,
+        "font": "BemboStd"
+      },
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "GILL & RORY",
+        "y_mm": 65.2,
+        "font_size": 15.5,
+        "font": "TBrook"
+      },
+      {
+        "type": "date",
+        "label": "Date",
+        "original_text": "APRIL, 2",
+        "y_mm": 75.9,
+        "font_size": 8.0,
+        "font": "TBrook"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "2022",
+        "y_mm": 75.9,
+        "font_size": 8.0,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/fiery/artwork.png",
+      "preview": "/designs/fiery/preview.png",
+      "thumbnail": "/designs/fiery/thumbnail.png",
+      "product": "/designs/fiery/product.png"
+    },
+    "alt_text": "Fiery save the date card featuring modern design elements in terracotta, burgundy tones",
+    "product_name": "Fiery Save the Date",
+    "product_description": "Announce your wedding with our stunning Fiery save the date cards, with clean, contemporary styling. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Fiery Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Fiery save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Fiery Save the Date",
+      "description": "Announce your wedding with our stunning Fiery save the date cards, with clean, contemporary styling. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/fiery/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/fiery-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Green Leaves Watercolour",
+    "slug": "green-leaves-watercolour",
+    "style_tags": [
+      "botanical"
+    ],
+    "colour_tags": [
+      "greens"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "venue",
+        "label": "Venue",
+        "original_text": "LUCY & LEWIS  |  CHATSWORTH HOUSE, BAKEWELL  |  08.08.28",
+        "y_mm": 99.0,
+        "font_size": 7.5,
+        "font": "Montserrat-Thin"
+      },
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "INVITATIONS TO FOLLOW",
+        "y_mm": 104.0,
+        "font_size": 7.5,
+        "font": "Montserrat-Thin"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/green-leaves-watercolour/artwork.png",
+      "preview": "/designs/green-leaves-watercolour/preview.png",
+      "thumbnail": "/designs/green-leaves-watercolour/thumbnail.png",
+      "product": "/designs/green-leaves-watercolour/product.png"
+    },
+    "alt_text": "Green Leaves Watercolour save the date card featuring botanical design elements in greens tones",
+    "product_name": "Green Leaves Watercolour Save the Date",
+    "product_description": "Announce your wedding with our stunning Green Leaves Watercolour save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Green Leaves Watercolour Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Green Leaves Watercolour save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Green Leaves Watercolour Save the Date",
+      "description": "Announce your wedding with our stunning Green Leaves Watercolour save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/green-leaves-watercolour/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/green-leaves-watercolour-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Gypsophila Save the Date",
+    "slug": "gypsophila-save-the-date",
+    "style_tags": [
+      "botanical",
+      "romantic"
+    ],
+    "colour_tags": [
+      "neutrals",
+      "greens"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "venue",
+        "label": "Venue",
+        "original_text": "JENNY & ALEX  |  23.09.2028  |  TAVERN MANOR",
+        "y_mm": 70.0,
+        "font_size": 7.5,
+        "font": "TBrook"
+      },
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "formal invitation to follow",
+        "y_mm": 75.1,
+        "font_size": 23.0,
+        "font": "AugustScriptBoldfree"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/gypsophila-save-the-date/artwork.png",
+      "preview": "/designs/gypsophila-save-the-date/preview.png",
+      "thumbnail": "/designs/gypsophila-save-the-date/thumbnail.png",
+      "product": "/designs/gypsophila-save-the-date/product.png"
+    },
+    "alt_text": "Gypsophila Save the Date save the date card featuring botanical and romantic design elements in neutrals, greens tones",
+    "product_name": "Gypsophila Save the Date Save the Date",
+    "product_description": "Announce your wedding with our stunning Gypsophila Save the Date save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Gypsophila Save the Date Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Gypsophila Save the Date save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Gypsophila Save the Date Save the Date",
+      "description": "Announce your wedding with our stunning Gypsophila Save the Date save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/gypsophila-save-the-date/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/gypsophila-save-the-date-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Kraft",
+    "slug": "kraft",
+    "style_tags": [
+      "minimal",
+      "traditional"
+    ],
+    "colour_tags": [
+      "neutrals"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "heading",
+        "label": "Save the Date",
+        "original_text": "Save The Date",
+        "y_mm": 35.4,
+        "font_size": 54.6,
+        "font": "Rosse"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "M E L I S S A  &  C A R L  |  2 1 . 0 9 . 2 8  |  I N V I T E  T O  F O L L O W",
+        "y_mm": 77.8,
+        "font_size": 8.2,
+        "font": "Montserrat-Thin"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/kraft/artwork.png",
+      "preview": "/designs/kraft/preview.png",
+      "thumbnail": "/designs/kraft/thumbnail.png",
+      "product": "/designs/kraft/product.png"
+    },
+    "alt_text": "Kraft save the date card featuring minimal and traditional design elements in neutrals tones",
+    "product_name": "Kraft Save the Date",
+    "product_description": "Announce your wedding with our stunning Kraft save the date cards, with an elegant, pared-back aesthetic. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Kraft Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Kraft save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Kraft Save the Date",
+      "description": "Announce your wedding with our stunning Kraft save the date cards, with an elegant, pared-back aesthetic. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/kraft/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/kraft-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Lavender",
+    "slug": "lavender",
+    "style_tags": [
+      "botanical",
+      "romantic"
+    ],
+    "colour_tags": [
+      "purples",
+      "greens"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "BETH & MICHAEL",
+        "y_mm": 70.7,
+        "font_size": 7.6,
+        "font": "TBrook"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "24 | 04 | 26",
+        "y_mm": 74.8,
+        "font_size": 20.1,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/lavender/artwork.png",
+      "preview": "/designs/lavender/preview.png",
+      "thumbnail": "/designs/lavender/thumbnail.png",
+      "product": "/designs/lavender/product.png"
+    },
+    "alt_text": "Lavender save the date card featuring botanical and romantic design elements in purples, greens tones",
+    "product_name": "Lavender Save the Date",
+    "product_description": "Announce your wedding with our stunning Lavender save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Lavender Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Lavender save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Lavender Save the Date",
+      "description": "Announce your wedding with our stunning Lavender save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/lavender/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/lavender-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Movie",
+    "slug": "movie",
+    "style_tags": [
+      "modern"
+    ],
+    "colour_tags": [
+      "neutrals"
+    ],
+    "width_mm": 128.3,
+    "height_mm": 171.3,
+    "fields": [
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "SARAH & JACOB",
+        "y_mm": 20.7,
+        "font_size": 7.0,
+        "font": "TBrook"
+      },
+      {
+        "type": "date",
+        "label": "Date",
+        "original_text": "02.02.22",
+        "y_mm": 25.8,
+        "font_size": 7.0,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/movie/artwork.png",
+      "preview": "/designs/movie/preview.png",
+      "thumbnail": "/designs/movie/thumbnail.png",
+      "product": "/designs/movie/product.png"
+    },
+    "alt_text": "Movie save the date card featuring modern design elements in neutrals tones",
+    "product_name": "Movie Save the Date",
+    "product_description": "Announce your wedding with our stunning Movie save the date cards, with clean, contemporary styling. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Movie Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Movie save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Movie Save the Date",
+      "description": "Announce your wedding with our stunning Movie save the date cards, with clean, contemporary styling. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/movie/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/movie-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Mr & Mr",
+    "slug": "mr-mr",
+    "style_tags": [
+      "modern"
+    ],
+    "colour_tags": [
+      "neutrals"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "heading",
+        "label": "Save the Date",
+        "original_text": "Save the Date",
+        "y_mm": 40.7,
+        "font_size": 39.2,
+        "font": "AmalfiCoast"
+      },
+      {
+        "type": "date",
+        "label": "Date",
+        "original_text": "ANTHONY & JOSHUA | 25 JULY 2026 | INVITES TO FOLLOW",
+        "y_mm": 74.2,
+        "font_size": 7.0,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/mr-mr/artwork.png",
+      "preview": "/designs/mr-mr/preview.png",
+      "thumbnail": "/designs/mr-mr/thumbnail.png",
+      "product": "/designs/mr-mr/product.png"
+    },
+    "alt_text": "Mr & Mr save the date card featuring modern design elements in neutrals tones",
+    "product_name": "Mr & Mr Save the Date",
+    "product_description": "Announce your wedding with our stunning Mr & Mr save the date cards, with clean, contemporary styling. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Mr & Mr Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Mr & Mr save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Mr & Mr Save the Date",
+      "description": "Announce your wedding with our stunning Mr & Mr save the date cards, with clean, contemporary styling. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/mr-mr/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/mr-mr-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Mushroom",
+    "slug": "mushroom",
+    "style_tags": [
+      "botanical"
+    ],
+    "colour_tags": [
+      "neutrals",
+      "terracotta"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "S A V E",
+        "y_mm": 46.6,
+        "font_size": 19.5,
+        "font": "BemboStd"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "0 2 . 0 2 . 2 2  |",
+        "y_mm": 106.5,
+        "font_size": 8.0,
+        "font": "BemboStd"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/mushroom/artwork.png",
+      "preview": "/designs/mushroom/preview.png",
+      "thumbnail": "/designs/mushroom/thumbnail.png",
+      "product": "/designs/mushroom/product.png"
+    },
+    "alt_text": "Mushroom save the date card featuring botanical design elements in neutrals, terracotta tones",
+    "product_name": "Mushroom Save the Date",
+    "product_description": "Announce your wedding with our stunning Mushroom save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Mushroom Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Mushroom save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Mushroom Save the Date",
+      "description": "Announce your wedding with our stunning Mushroom save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/mushroom/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/mushroom-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "October",
+    "slug": "october",
+    "style_tags": [
+      "botanical",
+      "traditional"
+    ],
+    "colour_tags": [
+      "burgundy",
+      "terracotta"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "ALICE & PETER | 10",
+        "y_mm": 109.1,
+        "font_size": 6.5,
+        "font": "TBrook"
+      },
+      {
+        "type": "date",
+        "label": "Date",
+        "original_text": "OCTOBER 2026 | NEW FOREST",
+        "y_mm": 109.1,
+        "font_size": 6.5,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/october/artwork.png",
+      "preview": "/designs/october/preview.png",
+      "thumbnail": "/designs/october/thumbnail.png",
+      "product": "/designs/october/product.png"
+    },
+    "alt_text": "October save the date card featuring botanical and traditional design elements in burgundy, terracotta tones",
+    "product_name": "October Save the Date",
+    "product_description": "Announce your wedding with our stunning October save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "October Save the Date Cards | TavernCreative",
+    "meta_description": "Shop October save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "October Save the Date",
+      "description": "Announce your wedding with our stunning October save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/october/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/october-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Old Sunflowers",
+    "slug": "old-sunflowers",
+    "style_tags": [
+      "botanical",
+      "traditional"
+    ],
+    "colour_tags": [
+      "gold",
+      "greens"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "heading",
+        "label": "Save the Date",
+        "original_text": "save the date",
+        "y_mm": 58.1,
+        "font_size": 126.9,
+        "font": "LoveHewits"
+      },
+      {
+        "type": "details",
+        "label": "Details",
+        "original_text": "LYDIA & ADAM | 03.09.26 | JERSEY | INVITATIONS TO FOLLOW",
+        "y_mm": 97.7,
+        "font_size": 6.5,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/old-sunflowers/artwork.png",
+      "preview": "/designs/old-sunflowers/preview.png",
+      "thumbnail": "/designs/old-sunflowers/thumbnail.png",
+      "product": "/designs/old-sunflowers/product.png"
+    },
+    "alt_text": "Old Sunflowers save the date card featuring botanical and traditional design elements in gold, greens tones",
+    "product_name": "Old Sunflowers Save the Date",
+    "product_description": "Announce your wedding with our stunning Old Sunflowers save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Old Sunflowers Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Old Sunflowers save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Old Sunflowers Save the Date",
+      "description": "Announce your wedding with our stunning Old Sunflowers save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/old-sunflowers/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/old-sunflowers-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Olive",
+    "slug": "olive",
+    "style_tags": [
+      "botanical",
+      "minimal"
+    ],
+    "colour_tags": [
+      "greens",
+      "neutrals"
+    ],
+    "width_mm": 171.3,
+    "height_mm": 128.3,
+    "fields": [
+      {
+        "type": "heading",
+        "label": "Save the Date",
+        "original_text": "Save the Date",
+        "y_mm": 58.1,
+        "font_size": 91.4,
+        "font": "HanstonDemo-Regular"
+      },
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "CONNIE & FRANKIE | 21.09.26 | WESTERHAM",
+        "y_mm": 94.0,
+        "font_size": 7.5,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/olive/artwork.png",
+      "preview": "/designs/olive/preview.png",
+      "thumbnail": "/designs/olive/thumbnail.png",
+      "product": "/designs/olive/product.png"
+    },
+    "alt_text": "Olive save the date card featuring botanical and minimal design elements in greens, neutrals tones",
+    "product_name": "Olive Save the Date",
+    "product_description": "Announce your wedding with our stunning Olive save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Olive Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Olive save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Olive Save the Date",
+      "description": "Announce your wedding with our stunning Olive save the date cards, adorned with hand-painted botanical illustrations. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/olive/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/olive-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Outlines",
+    "slug": "outlines",
+    "style_tags": [
+      "minimal",
+      "modern"
+    ],
+    "colour_tags": [
+      "neutrals"
+    ],
+    "width_mm": 128.3,
+    "height_mm": 171.3,
+    "fields": [
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "SARAH & JACOB",
+        "y_mm": 118.3,
+        "font_size": 10.0,
+        "font": "Courier"
+      },
+      {
+        "type": "date",
+        "label": "Date",
+        "original_text": "01.02.2021",
+        "y_mm": 134.6,
+        "font_size": 10.0,
+        "font": "Courier"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/outlines/artwork.png",
+      "preview": "/designs/outlines/preview.png",
+      "thumbnail": "/designs/outlines/thumbnail.png",
+      "product": "/designs/outlines/product.png"
+    },
+    "alt_text": "Outlines save the date card featuring minimal and modern design elements in neutrals tones",
+    "product_name": "Outlines Save the Date",
+    "product_description": "Announce your wedding with our stunning Outlines save the date cards, with an elegant, pared-back aesthetic. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Outlines Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Outlines save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Outlines Save the Date",
+      "description": "Announce your wedding with our stunning Outlines save the date cards, with an elegant, pared-back aesthetic. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/outlines/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/outlines-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Rust",
+    "slug": "rust",
+    "style_tags": [
+      "modern"
+    ],
+    "colour_tags": [
+      "terracotta"
+    ],
+    "width_mm": 128.3,
+    "height_mm": 171.3,
+    "fields": [
+      {
+        "type": "heading",
+        "label": "Save the Date",
+        "original_text": "SAVE THE DATE",
+        "y_mm": 31.3,
+        "font_size": 10.0,
+        "font": "Courier"
+      },
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "ARE GETTING MARRIED",
+        "y_mm": 121.0,
+        "font_size": 10.0,
+        "font": "Courier"
+      },
+      {
+        "type": "date",
+        "label": "Date",
+        "original_text": "06.04.2022",
+        "y_mm": 129.2,
+        "font_size": 10.0,
+        "font": "Courier"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/rust/artwork.png",
+      "preview": "/designs/rust/preview.png",
+      "thumbnail": "/designs/rust/thumbnail.png",
+      "product": "/designs/rust/product.png"
+    },
+    "alt_text": "Rust save the date card featuring modern design elements in terracotta tones",
+    "product_name": "Rust Save the Date",
+    "product_description": "Announce your wedding with our stunning Rust save the date cards, with clean, contemporary styling. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Rust Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Rust save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Rust Save the Date",
+      "description": "Announce your wedding with our stunning Rust save the date cards, with clean, contemporary styling. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/rust/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/rust-save-the-date"
+      }
+    }
+  },
+  {
+    "name": "Whimsical",
+    "slug": "whimsical",
+    "style_tags": [
+      "romantic",
+      "botanical"
+    ],
+    "colour_tags": [
+      "pinks",
+      "purples"
+    ],
+    "width_mm": 128.3,
+    "height_mm": 171.3,
+    "fields": [
+      {
+        "type": "names",
+        "label": "Names",
+        "original_text": "BREANNA & MASON",
+        "y_mm": 129.6,
+        "font_size": 6.5,
+        "font": "TBrook"
+      },
+      {
+        "type": "date",
+        "label": "Date",
+        "original_text": "29.09.22",
+        "y_mm": 133.3,
+        "font_size": 23.0,
+        "font": "TBrook"
+      },
+      {
+        "type": "venue",
+        "label": "Venue",
+        "original_text": "JOHNSON HALL, HOUSTON",
+        "y_mm": 143.3,
+        "font_size": 6.5,
+        "font": "TBrook"
+      }
+    ],
+    "files": {
+      "artwork": "/designs/whimsical/artwork.png",
+      "preview": "/designs/whimsical/preview.png",
+      "thumbnail": "/designs/whimsical/thumbnail.png",
+      "product": "/designs/whimsical/product.png"
+    },
+    "alt_text": "Whimsical save the date card featuring romantic and botanical design elements in pinks, purples tones",
+    "product_name": "Whimsical Save the Date",
+    "product_description": "Announce your wedding with our stunning Whimsical save the date cards, featuring flowing, romantic design elements. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+    "meta_title": "Whimsical Save the Date Cards | TavernCreative",
+    "meta_description": "Shop Whimsical save the date cards from TavernCreative. Personalise online in seconds. Premium quality, fast UK delivery.",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Whimsical Save the Date",
+      "description": "Announce your wedding with our stunning Whimsical save the date cards, featuring flowing, romantic design elements. Personalise with your names, date and venue for a design that's uniquely yours. Printed on premium 350gsm card stock with a luxurious finish.",
+      "image": "/designs/whimsical/product.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "TavernCreative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "GBP",
+        "price": "1.50",
+        "availability": "https://schema.org/InStock",
+        "url": "/products/whimsical-save-the-date"
+      }
+    }
+  }
+]

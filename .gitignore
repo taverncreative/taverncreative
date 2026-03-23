@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Source design files (originals — not needed for the live site)
+/Save The Date Designs/
+/Save The Date Designs Clean/
+/Save The Date Designs With Text/
+/Decorative/
+/public/Single Card Invitations/
+/TClogoA6back.png
+
+# Claude internal
+/.claude/

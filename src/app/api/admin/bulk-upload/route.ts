@@ -113,10 +113,10 @@ export async function POST(request: NextRequest) {
     collectionId = created!.id;
   }
 
-  // Also upload to the collection's assets in storage (for admin asset bank)
+  // Also upload to the collection's slug folder in storage (for admin asset bank)
   // Upload the no-text version as a collection asset
   if (fileType === "notext") {
-    const assetPath = `collections/${collectionId}/${prefix}asset-${Date.now()}.webp`;
+    const assetPath = `${slug}/${prefix}asset-${Date.now()}.webp`;
     await supabase.storage
       .from("design-assets")
       .upload(assetPath, buffer, {

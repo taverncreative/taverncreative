@@ -249,15 +249,28 @@ export default function AdminCollections() {
           </p>
         </div>
         <div className="flex gap-2">
-          {selectMode && selected.size >= 2 && (
+          {selected.size >= 2 && (
             <Button variant="outline" onClick={handleMerge}>
               <Merge className="h-4 w-4 mr-2" />
               Merge ({selected.size})
             </Button>
           )}
-          <Button variant="outline" onClick={() => { setSelectMode(!selectMode); setSelected(new Set()); }}>
-            {selectMode ? "Cancel" : <><CheckSquare className="h-4 w-4 mr-2" /> Select</>}
-          </Button>
+          {selected.size >= 1 && (
+            <Button variant="outline" onClick={async () => {
+              if (!confirm(`Delete ${selected.size} collection${selected.size > 1 ? "s" : ""}?`)) return;
+              for (const cid of selected) { await handleDelete(cid); }
+              setSelected(new Set());
+              setSelectMode(false);
+            }}>
+              <Trash2 className="h-4 w-4 mr-2 text-destructive" />
+              Delete ({selected.size})
+            </Button>
+          )}
+          {selected.size > 0 && (
+            <Button variant="ghost" size="sm" onClick={() => { setSelectMode(false); setSelected(new Set()); }}>
+              Cancel
+            </Button>
+          )}
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
               <Button onClick={openCreate}><Plus className="h-4 w-4 mr-2" /> New</Button>
@@ -382,21 +395,21 @@ export default function AdminCollections() {
 
             return (
               <Card key={collection.id} className={`group relative overflow-hidden transition-all ${isSelected ? "ring-2 ring-foreground" : ""}`}>
-                {/* Checkbox overlay */}
-                {selectMode && (
-                  <button className="absolute top-2 left-2 z-10" onClick={() => toggleSelect(collection.id)}>
-                    {isSelected
-                      ? <CheckSquare className="h-5 w-5 text-foreground" />
-                      : <Square className="h-5 w-5 text-muted-foreground" />}
-                  </button>
-                )}
+                {/* Checkbox — always visible in corner */}
+                <button className="absolute top-2 left-2 z-10 opacity-40 hover:opacity-100 transition-opacity" onClick={() => { if (!selectMode) setSelectMode(true); toggleSelect(collection.id); }}>
+                  {isSelected
+                    ? <CheckSquare className="h-5 w-5 text-foreground" />
+                    : <Square className="h-5 w-5 text-muted-foreground" />}
+                </button>
 
-                {/* Thumbnail */}
-                <div className="aspect-[148/105] bg-muted/20 overflow-hidden">
+                {/* Thumbnail — show full design, no cropping */}
+                <div className="aspect-[148/105] bg-white overflow-hidden flex items-center justify-center">
                   {collection.preview_images?.[0] ? (
-                    <img src={collection.preview_images[0]} alt="" className="w-full h-full object-cover" />
+                    <img src={collection.preview_images[0]} alt="" className="max-w-full max-h-full object-contain" />
+                  ) : collection.hero_image_url ? (
+                    <img src={collection.hero_image_url} alt="" className="max-w-full max-h-full object-contain" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-xs text-muted-foreground">No assets</div>
+                    <div className="text-xs text-muted-foreground">No assets</div>
                   )}
                 </div>
 

@@ -44,25 +44,29 @@ export async function GET(
     // Directory doesn't exist — that's fine
   }
 
-  // 2. Check Supabase storage
-  const { data: storageFiles } = await supabase.storage
-    .from("design-assets")
-    .list(collection.slug);
+  // 2. Check Supabase storage — both slug-based and collection-id-based paths
+  const storagePaths = [collection.slug, `collections/${id}`];
 
-  if (storageFiles) {
-    for (const file of storageFiles) {
-      if (/\.(png|jpg|jpeg|webp|svg)$/i.test(file.name)) {
-        const { data: urlData } = supabase.storage
-          .from("design-assets")
-          .getPublicUrl(`${collection.slug}/${file.name}`);
+  for (const storagePath of storagePaths) {
+    const { data: storageFiles } = await supabase.storage
+      .from("design-assets")
+      .list(storagePath);
 
-        // Don't add duplicates (same name already from local)
-        if (!assets.find((a) => a.name === file.name)) {
-          assets.push({
-            url: urlData.publicUrl,
-            name: file.name,
-            source: "supabase",
-          });
+    if (storageFiles) {
+      for (const file of storageFiles) {
+        if (/\.(png|jpg|jpeg|webp|svg)$/i.test(file.name)) {
+          const { data: urlData } = supabase.storage
+            .from("design-assets")
+            .getPublicUrl(`${storagePath}/${file.name}`);
+
+          // Don't add duplicates (same name already added)
+          if (!assets.find((a) => a.name === file.name)) {
+            assets.push({
+              url: urlData.publicUrl,
+              name: file.name,
+              source: "supabase",
+            });
+          }
         }
       }
     }

@@ -1,20 +1,18 @@
 [
   {
+    "family": "Montserrat-Italic",
+    "file": "Montserrat-Italic-VariableFont_wght.ttf"
+  },
+  {
     "family": "Montserrat",
-    "file": "Montserrat-VariableFont_wght.ttf",
-    "weight": "100 900",
-    "style": "normal"
+    "file": "Montserrat-VariableFont_wght.ttf"
   },
   {
     "family": "ROSSE",
-    "file": "ROSSE.ttf",
-    "weight": "400",
-    "style": "normal"
+    "file": "ROSSE.ttf"
   },
   {
     "family": "aAutoSignature",
-    "file": "aAutoSignature.ttf",
-    "weight": "400",
-    "style": "normal"
+    "file": "aAutoSignature.ttf"
   }
 ]

@@ -184,9 +184,9 @@ async function syncProductToStorefront(
       mockup_images: (cp.mockup_images as string[])?.length
         ? (cp.mockup_images as string[])
         : [
-            `/designs/${collection.slug as string}/product.png`,
-            `/designs/${collection.slug as string}/preview.png`,
-            `/designs/${collection.slug as string}/thumbnail.png`,
+            `/designs/${collection.slug as string}/product.webp`,
+            `/designs/${collection.slug as string}/preview.webp`,
+            `/designs/${collection.slug as string}/thumbnail.webp`,
           ],
       is_published: true,
     };

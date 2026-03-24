@@ -72,11 +72,11 @@ const productIcons: Record<string, typeof Calendar> = {
 };
 
 const styleData = [
-  { id: "botanical", label: "Botanical", desc: "Lush florals and organic textures", icon: Sparkles, image: "/designs/eucalyptus/thumbnail.png", gradient: "from-green-800/40 to-emerald-900/60" },
-  { id: "minimal", label: "Minimal", desc: "Clean lines, breathing room", icon: Zap, image: "/designs/outlines/thumbnail.png", gradient: "from-gray-700/40 to-slate-800/60" },
-  { id: "modern", label: "Modern", desc: "Bold type, geometric shapes", icon: Paintbrush, image: "/designs/confetti/thumbnail.png", gradient: "from-rose-800/40 to-pink-900/60" },
-  { id: "traditional", label: "Traditional", desc: "Classic elegance", icon: BookOpen, image: "/designs/calligraphy/thumbnail.png", gradient: "from-amber-800/40 to-yellow-900/60" },
-  { id: "romantic", label: "Romantic", desc: "Soft, flowing, full of feeling", icon: Heart, image: "/designs/whimsical/thumbnail.png", gradient: "from-pink-800/40 to-rose-900/60" },
+  { id: "botanical", label: "Botanical", desc: "Lush florals and organic textures", icon: Sparkles, image: "/designs/eucalyptus/thumbnail.webp", gradient: "from-green-800/40 to-emerald-900/60" },
+  { id: "minimal", label: "Minimal", desc: "Clean lines, breathing room", icon: Zap, image: "/designs/outlines/thumbnail.webp", gradient: "from-gray-700/40 to-slate-800/60" },
+  { id: "modern", label: "Modern", desc: "Bold type, geometric shapes", icon: Paintbrush, image: "/designs/confetti/thumbnail.webp", gradient: "from-rose-800/40 to-pink-900/60" },
+  { id: "traditional", label: "Traditional", desc: "Classic elegance", icon: BookOpen, image: "/designs/calligraphy/thumbnail.webp", gradient: "from-amber-800/40 to-yellow-900/60" },
+  { id: "romantic", label: "Romantic", desc: "Soft, flowing, full of feeling", icon: Heart, image: "/designs/whimsical/thumbnail.webp", gradient: "from-pink-800/40 to-rose-900/60" },
 ];
 
 const FONT_OPTIONS = ["Montserrat", "Playfair Display", "Great Vibes", "Cormorant Garamond", "Raleway"];
@@ -302,7 +302,7 @@ export function DesignWizard() {
       productName: `${match.collection.name} ${match.template.name}`,
       productSlug: match.product.slug,
       designCollectionName: match.collection.name,
-      mockupImage: `/designs/${match.collection.slug}/thumbnail.png`,
+      mockupImage: `/designs/${match.collection.slug}/thumbnail.webp`,
       quantity: 25,
       unitPrice: match.product.base_price,
       personalisationData: state.personalisation,

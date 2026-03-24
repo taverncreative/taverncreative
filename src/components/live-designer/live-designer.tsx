@@ -108,10 +108,10 @@ export function LiveDesigner({
       }
       onSwatchesExtracted(unique);
     };
-    img.src = `/designs/${collectionSlug}/preview.png`;
+    img.src = `/designs/${collectionSlug}/preview.webp`;
   }, [collectionSlug, onSwatchesExtracted]);
 
-  const artworkUrl = `/designs/${collectionSlug}/preview.png`;
+  const artworkUrl = `/designs/${collectionSlug}/preview.webp`;
 
   return (
     <div
@@ -126,7 +126,7 @@ export function LiveDesigner({
         className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 pointer-events-none mix-blend-multiply z-[1]"
         style={{ backgroundColor: "rgba(254, 252, 248, 1)" }} />
-      <img src="/texture-landscape.png" alt=""
+      <img src="/texture-landscape.webp" alt=""
         className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-multiply opacity-15 z-[1]" />
 
       {computed.map((cf) => {

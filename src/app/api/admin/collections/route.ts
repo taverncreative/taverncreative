@@ -5,13 +5,26 @@ export async function GET() {
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("design_collections")
-    .select("*")
+    .select("*, collection_products(id, status, is_live)")
     .order("sort_order", { ascending: true });
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
-  return NextResponse.json(data);
+
+  // Add completion stats
+  const enriched = (data || []).map((c: Record<string, unknown>) => {
+    const products = (c.collection_products || []) as { status: string; is_live: boolean }[];
+    const total = products.length;
+    const complete = products.filter((p) => p.status === "complete").length;
+    const live = products.filter((p) => p.is_live).length;
+    return {
+      ...c,
+      _stats: { total, complete, live, pct: total > 0 ? Math.round((complete / total) * 100) : 0 },
+    };
+  });
+
+  return NextResponse.json(enriched);
 }
 
 export async function POST(request: NextRequest) {

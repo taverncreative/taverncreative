@@ -124,7 +124,7 @@ export default async function CollectionPage({
                       </div>
                     )}
                     <img
-                      src="/texture-landscape.png"
+                      src="/texture-landscape.webp"
                       alt=""
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-multiply opacity-15"
                     />

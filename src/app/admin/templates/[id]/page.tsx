@@ -367,7 +367,7 @@ export default function TemplateDetailPage({
         }
         // Extract contextual swatches from the artwork
         if (col.slug) {
-          extractSwatches(`/designs/${col.slug}/preview.png`);
+          extractSwatches(`/designs/${col.slug}/preview.webp`);
         }
       }
 
@@ -916,7 +916,7 @@ export default function TemplateDetailPage({
           >
             {/* Back side — TC logo file fills entire back */}
             {activeSide === "back" && (
-              <img src="/TClogoA6back.png" alt="TavernCreative back" className="absolute inset-0 w-full h-full object-fill" />
+              <img src="/TClogoA6back.webp" alt="TavernCreative back" className="absolute inset-0 w-full h-full object-fill" />
             )}
             {/* Bleed border — z-50 to always show above assets */}
             <div className="absolute border border-dashed border-red-400/80 z-50 pointer-events-none"

@@ -55,13 +55,13 @@ export default function CartPage() {
                   <div className="relative w-full" style={{ aspectRatio: "148 / 105" }}>
                     {item.collectionSlug && (
                       <img
-                        src={`/designs/${item.collectionSlug}/preview.png`}
+                        src={`/designs/${item.collectionSlug}/preview.webp`}
                         alt={item.productName}
                         className="absolute inset-0 w-full h-full object-cover"
                       />
                     )}
                     <img
-                      src="/texture-landscape.png"
+                      src="/texture-landscape.webp"
                       alt=""
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-multiply opacity-25"
                     />

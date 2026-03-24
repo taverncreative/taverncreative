@@ -176,10 +176,10 @@ export function ProductDetails({
 
       imageContainer.innerHTML = `
         <div class="relative overflow-hidden" style="box-shadow:0 4px 24px rgba(0,0,0,0.10),0 1px 4px rgba(0,0,0,0.06);">
-          <img src="/designs/${collectionSlug}/preview.png" alt="${productName}" class="w-full h-auto block" />
+          <img src="/designs/${collectionSlug}/preview.webp" alt="${productName}" class="w-full h-auto block" />
           <div class="absolute inset-0">${overlayHTML}</div>
           <div class="absolute inset-0 pointer-events-none mix-blend-multiply" style="background-color:rgba(254,253,251,1);"></div>
-          <img src="/texture-landscape.png" alt="" class="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-multiply opacity-70" />
+          <img src="/texture-landscape.webp" alt="" class="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-multiply opacity-70" />
         </div>
       `;
     }

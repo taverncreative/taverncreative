@@ -43,7 +43,7 @@ export function ArtboardPreview({
 
   // Background artwork from collection
   const artworkUrl = collectionSlug
-    ? `/designs/${collectionSlug}/preview.png`
+    ? `/designs/${collectionSlug}/preview.webp`
     : undefined;
 
   if (mounted) {
@@ -67,7 +67,7 @@ export function ArtboardPreview({
         <div className="absolute inset-0 pointer-events-none mix-blend-multiply z-[1]" style={{ backgroundColor: "rgba(254, 253, 251, 1)" }} />
         {/* Paper texture overlay */}
         <img
-          src="/texture-landscape.png"
+          src="/texture-landscape.webp"
           alt=""
           className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-multiply opacity-70 z-[1]"
         />

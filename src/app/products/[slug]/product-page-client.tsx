@@ -195,7 +195,7 @@ export function ProductPage({
     setError("");
     addItem({
       productId, productName, productSlug, designCollectionName: collectionName,
-      collectionSlug, mockupImage: `/designs/${collectionSlug}/product.png`, quantity, unitPrice: effectiveUnitPrice,
+      collectionSlug, mockupImage: `/designs/${collectionSlug}/product.webp`, quantity, unitPrice: effectiveUnitPrice,
       personalisationData: {
         Names: namesDisplay, Date: formatDateForCard(weddingDate, dateFormatUS), Venue: venue,
         ...fieldValues, _highlightColour: selectedColour, _showHeart: showHeart ? "yes" : "no",
@@ -292,7 +292,7 @@ export function ProductPage({
           ) : (
             <div className="relative w-full overflow-hidden rounded-sm"
               style={{ aspectRatio: `${artWidthMm} / ${artHeightMm}`, filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.08))", backgroundColor: "#faf9f7" }}>
-              <img src="/texture-landscape.png" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-multiply opacity-25" />
+              <img src="/texture-landscape.webp" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-multiply opacity-25" />
               <div className="relative z-[2] h-full flex flex-col items-center justify-center p-[8%] overflow-hidden">
                 {isDoubleSided ? (
                   <div className={`w-full ${backColumns === 2 ? "grid grid-cols-2 gap-4" : ""}`}>
@@ -310,7 +310,7 @@ export function ProductPage({
                     ))}
                   </div>
                 ) : (
-                  <img src="/TClogoA6back.png" alt="TavernCreative" className="w-full h-full object-contain absolute inset-0 opacity-30" />
+                  <img src="/TClogoA6back.webp" alt="TavernCreative" className="w-full h-full object-contain absolute inset-0 opacity-30" />
                 )}
               </div>
             </div>

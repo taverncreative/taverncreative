@@ -50,3 +50,5 @@ next-env.d.ts
 
 # Claude internal
 /.claude/
+public/designs/
+public/Fonts/

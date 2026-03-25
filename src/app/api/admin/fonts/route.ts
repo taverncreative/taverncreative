@@ -40,7 +40,10 @@ export async function GET() {
       .filter((f): f is string => !!f && f !== "center")
   )];
 
-  return NextResponse.json(usedFonts);
+  return NextResponse.json({
+    allFamilies: families.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())),
+    usedFonts,
+  });
 }
 
 /**

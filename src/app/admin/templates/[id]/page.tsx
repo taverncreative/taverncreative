@@ -384,18 +384,17 @@ export default function TemplateDetailPage({
         }
       }
 
-      // Load font registry + customer font bank
+      // Load fonts from Supabase Storage via API + customer font bank
       try {
-        const [fontRes, customerFontRes] = await Promise.all([
-          fetch("/font-registry.json"),
-          fetch("/api/admin/fonts"),
-        ]);
-        const fonts: { family: string }[] = await fontRes.json();
-        const families = [...new Set(fonts.map((f) => f.family))].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
-        setAllFonts(families);
-        fontOptions = families;
-        const cf: string[] = await customerFontRes.json();
-        setCustomerFonts(cf);
+        const fontListRes = await fetch("/api/admin/fonts?list=all");
+        const fontData = await fontListRes.json();
+        // fontData is { allFamilies: string[], usedFonts: string[] } or just string[] (customer fonts)
+        const families = Array.isArray(fontData.allFamilies) ? fontData.allFamilies : (Array.isArray(fontData) ? fontData : []);
+        const usedFonts = Array.isArray(fontData.usedFonts) ? fontData.usedFonts : [];
+        const allFamiliesSorted = [...new Set([...families, ...usedFonts, "Montserrat"])].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+        setAllFonts(allFamiliesSorted);
+        fontOptions = allFamiliesSorted;
+        setCustomerFonts(usedFonts);
       } catch {
         setAllFonts(["Montserrat", "Playfair Display", "Dancing Script"]);
       }
@@ -481,8 +480,16 @@ export default function TemplateDetailPage({
   }
 
   function removeField(index: number) {
-    setFields(fields.filter((_, i) => i !== index));
-    setSelectedFieldIndex(null);
+    const newFields = fields.filter((_, i) => i !== index);
+    setFields(newFields);
+    // Select next field (or previous if last was deleted)
+    if (newFields.length === 0) {
+      setSelectedFieldIndex(null);
+    } else if (index < newFields.length) {
+      setSelectedFieldIndex(index);
+    } else {
+      setSelectedFieldIndex(newFields.length - 1);
+    }
   }
 
   // Move only the selected field up/down on the artboard
@@ -1433,14 +1440,16 @@ export default function TemplateDetailPage({
               const img = new window.Image();
               img.onload = () => {
                 const ar = img.naturalWidth / img.naturalHeight;
-                const assetW = artW * 0.4;
+                // Auto fit-width + align-top (includes bleed area)
+                const totalW = artW + BLEED_MM * 2;
+                const assetW = totalW;
                 const assetH = assetW / ar;
                 setPlacedAssets((prev) => [
                   ...prev,
                   {
                     url,
-                    x_mm: (artW - assetW) / 2,
-                    y_mm: (artH - assetH) / 2,
+                    x_mm: -BLEED_MM, // Start from bleed edge
+                    y_mm: -BLEED_MM, // Align to top bleed edge
                     width_mm: assetW,
                     height_mm: assetH,
                     aspect_ratio: ar,

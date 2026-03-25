@@ -447,17 +447,33 @@ export default function TemplateDetailPage({
         repeater_body_size: 12,
       } : {}),
     };
-    // Place new field below the last one with current spacing, don't touch existing positions
+    // Place new field below the last one, then recentre the whole group vertically
+    const allFields = [...fields, newField];
+
     if (fields.length > 0) {
       const lastField = fields[fields.length - 1];
       const lastFieldHeight = lastField.font_size * 0.5;
       newField.y_mm = Math.round((lastField.y_mm + lastFieldHeight + fieldSpacing) * 10) / 10;
     } else {
-      // First field — centre it
-      newField.y_mm = Math.round((artH / 2 - newField.font_size * 0.25) * 10) / 10;
+      newField.y_mm = artH * 0.3;
     }
-    setFields([...fields, newField]);
-    setSelectedFieldIndex(fields.length);
+
+    // Recentre all fields vertically as a group
+    const groupFirstY = allFields[0].y_mm;
+    const groupLastY = newField.y_mm + newField.font_size * 0.5;
+    const totalHeight = groupLastY - groupFirstY;
+    const centreOffset = (artH - totalHeight) / 2 - groupFirstY;
+
+    if (centreOffset !== 0) {
+      const recentred = allFields.map((f) => ({
+        ...f,
+        y_mm: Math.max(2, Math.round((f.y_mm + centreOffset) * 10) / 10),
+      }));
+      setFields(recentred);
+    } else {
+      setFields(allFields);
+    }
+    setSelectedFieldIndex(allFields.length - 1);
   }
 
   function updateField(index: number, updates: Partial<FieldDraft>) {
@@ -1278,7 +1294,7 @@ export default function TemplateDetailPage({
                 const connector = field.names_connector || "&";
                 const connectorSize = (field.names_connector_size || 18) * scale * 0.28;
                 const nameSize = field.font_size * scale * 0.28;
-                const connectorColour = field.names_connector_colour || "#1a1a1a";
+                const connectorColour = field.names_connector_colour === "__highlight__" ? fieldColour : (field.names_connector_colour || "#1a1a1a");
                 const connectorFont = field.names_connector_font || field.font_family;
                 const lineSpacing = field.names_line_spacing || 1.2;
                 const placeholder = field.placeholder || "Ella West & Myles Porter";
@@ -1742,13 +1758,6 @@ export default function TemplateDetailPage({
                         onChange={(e) => updateField(selectedFieldIndex!, { font_size: Number(e.target.value) })}
                         className="h-8 text-sm" />
                     </div>
-                    <div>
-                      <Label className="text-xs">Weight <span className="text-muted-foreground">{selectedField.font_weight || 400}</span></Label>
-                      <Input type="range" min={100} max={900} step={10}
-                        value={selectedField.font_weight || 400}
-                        onChange={(e) => updateField(selectedFieldIndex!, { font_weight: Number(e.target.value) })}
-                        className="h-8 text-sm accent-foreground" />
-                    </div>
                     <label className="flex items-center gap-2 text-xs cursor-pointer">
                       <input type="checkbox" checked={selectedField.is_uppercase || false}
                         onChange={(e) => updateField(selectedFieldIndex!, { is_uppercase: e.target.checked })} />
@@ -1871,15 +1880,23 @@ export default function TemplateDetailPage({
                           </Select>
                         </div>
                         <div>
-                          <Label className="text-xs">Connector Colour</Label>
-                          <div className="flex items-center gap-2 mt-1">
-                            <input type="color" value={selectedField.names_connector_colour || "#1a1a1a"}
-                              onChange={(e) => updateField(selectedFieldIndex!, { names_connector_colour: e.target.value })}
-                              className="w-8 h-8 rounded border border-border cursor-pointer" />
-                            <Input value={selectedField.names_connector_colour || "#1a1a1a"}
-                              onChange={(e) => updateField(selectedFieldIndex!, { names_connector_colour: e.target.value })}
-                              className="h-8 text-sm flex-1" />
-                          </div>
+                          <label className="flex items-center gap-2 text-xs cursor-pointer">
+                            <input type="checkbox" checked={selectedField.names_connector_colour === "__highlight__"}
+                              onChange={(e) => updateField(selectedFieldIndex!, {
+                                names_connector_colour: e.target.checked ? "__highlight__" : "#1a1a1a"
+                              })} />
+                            Connector uses highlight colour
+                          </label>
+                          {selectedField.names_connector_colour !== "__highlight__" && (
+                            <div className="flex items-center gap-2 mt-1">
+                              <input type="color" value={selectedField.names_connector_colour || "#1a1a1a"}
+                                onChange={(e) => updateField(selectedFieldIndex!, { names_connector_colour: e.target.value })}
+                                className="w-8 h-8 rounded border border-border cursor-pointer" />
+                              <Input value={selectedField.names_connector_colour || "#1a1a1a"}
+                                onChange={(e) => updateField(selectedFieldIndex!, { names_connector_colour: e.target.value })}
+                                className="h-8 text-sm flex-1" />
+                            </div>
+                          )}
                         </div>
                         <div>
                           <Label className="text-xs">Line Spacing</Label>

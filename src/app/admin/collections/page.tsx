@@ -28,6 +28,7 @@ interface DesignCollection {
   description: string | null;
   is_published: boolean;
   preview_images: string[];
+  hero_image_url: string | null;
   _stats: CollectionStats;
 }
 

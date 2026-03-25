@@ -26,9 +26,9 @@ const BLEED_MM = 3; // Fixed 3mm bleed
 // Available field types
 const fieldTypes: { type: ExtendedFieldType; label: string; icon: typeof Type; desc?: string }[] = [
   { type: "text", label: "Text", icon: Type },
+  { type: "textarea", label: "Long Text", icon: AlignLeft, desc: "Multi-line with breaks" },
   { type: "date", label: "Date", icon: Calendar },
   { type: "time", label: "Time", icon: Clock },
-  { type: "textarea", label: "Text Area", icon: AlignLeft },
   { type: "names", label: "Names", icon: Users, desc: "Name & Name (3 lines)" },
   { type: "big_date", label: "Big Date", icon: Hash, desc: "DD | MM | YY" },
   { type: "heart", label: "Heart", icon: Heart, desc: "❤ divider" },
@@ -117,6 +117,7 @@ interface FieldDraft {
   text_width_pct?: number; // max text width as % of card width (default 88)
   letter_spacing?: number; // letter spacing in em units (default 0)
   text_stroke?: number; // stroke width in px (0 = none, 0.1-2.0 range)
+  line_spacing?: number; // line-height multiplier (default 1.2 for text, 1.4 for long text)
   big_date_format?: "dmy" | "mdy"; // DD|MM|YY or MM|DD|YY
   // Names-specific (3-line: Name1 / connector / Name2)
   names_connector?: string; // default "&"
@@ -409,7 +410,17 @@ export default function TemplateDetailPage({
       type === "date" ? "Date" : type === "time" ? "Time" : type === "repeater" ? "Items"
       : type === "big_date" ? "Date" : type === "heart" ? "❤" : type === "tri_details" ? "Details"
       : type === "names" ? "Names" : "";
-    const lastY = fields.length > 0 ? fields[fields.length - 1].y_mm + 12 : artH * 0.3;
+    // Auto-place below last field with proper spacing based on font size
+    let lastY: number;
+    if (fields.length > 0) {
+      const lastField = fields[fields.length - 1];
+      // Estimate height of last field based on its font size (in mm)
+      const lastFieldHeight = (lastField.font_size || 14) * 0.4; // rough px-to-mm
+      const gap = Math.max(3, (lastField.font_size || 14) * 0.15); // proportional gap
+      lastY = lastField.y_mm + lastFieldHeight + gap;
+    } else {
+      lastY = artH * 0.3;
+    }
     const newField: FieldDraft = {
       field_type: type,
       label: defaultLabel,
@@ -1401,7 +1412,7 @@ export default function TemplateDetailPage({
                   onClick={(e) => { e.stopPropagation(); setSelectedFieldIndex(i); }}
                 >
                   <p
-                    className="leading-tight text-foreground/80 hover:text-foreground transition-colors"
+                    className="text-foreground/80 hover:text-foreground transition-colors"
                     style={{
                       fontFamily: `'${field.font_family}', sans-serif`,
                       fontSize: field.font_size * scale * 0.28,
@@ -1409,6 +1420,8 @@ export default function TemplateDetailPage({
                       textTransform: field.is_uppercase ? "uppercase" : "none",
                       fontWeight: field.font_weight || 400,
                       letterSpacing: field.letter_spacing ? `${field.letter_spacing}em` : field.is_uppercase ? "0.1em" : "normal",
+                      lineHeight: field.line_spacing || 1.2,
+                      whiteSpace: field.field_type === "textarea" ? "pre-wrap" : undefined,
                       color: fieldColour,
                       transform: scaleY !== 1 ? `scaleY(${scaleY})` : undefined,
                       WebkitTextStroke: field.text_stroke ? `${field.text_stroke * scale * 0.28}px ${fieldColour}` : undefined,
@@ -1726,12 +1739,21 @@ export default function TemplateDetailPage({
                     </div>
                     <div>
                       <Label className="text-xs">Placeholder</Label>
+                      {selectedField.field_type === "textarea" ? (
+                        <textarea
+                          value={selectedField.placeholder}
+                          onChange={(e) => updateField(selectedFieldIndex!, { placeholder: e.target.value })}
+                          className="w-full text-sm border rounded px-2 py-1.5 min-h-[60px] resize-y"
+                          placeholder="e.g., Request the pleasure&#10;of your company"
+                        />
+                      ) : (
                       <Input
                         value={selectedField.placeholder}
                         onChange={(e) => updateField(selectedFieldIndex!, { placeholder: e.target.value })}
                         className="h-8 text-sm"
                         placeholder="e.g., Emily & James"
                       />
+                      )}
                     </div>
                     <div>
                       <Label className="text-xs">Type</Label>
@@ -1814,6 +1836,17 @@ export default function TemplateDetailPage({
                       <input type="range" min="0" max="20" step="1"
                         value={Math.round((selectedField.text_stroke || 0) * 10)}
                         onChange={(e) => updateField(selectedFieldIndex!, { text_stroke: Number(e.target.value) / 10 })}
+                        className="w-full h-1.5 mt-1" />
+                    </div>
+                    {/* Line Spacing */}
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <Label className="text-xs">Line Spacing</Label>
+                        <span className="text-[10px] text-muted-foreground">{(selectedField.line_spacing || 1.2).toFixed(1)}×</span>
+                      </div>
+                      <input type="range" min="8" max="30" step="1"
+                        value={Math.round((selectedField.line_spacing || 1.2) * 10)}
+                        onChange={(e) => updateField(selectedFieldIndex!, { line_spacing: Number(e.target.value) / 10 })}
                         className="w-full h-1.5 mt-1" />
                     </div>
                     <Separator />

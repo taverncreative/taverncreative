@@ -49,6 +49,12 @@ interface Collection {
   local_assets?: string[];
 }
 
+interface AssetItem {
+  url: string;
+  name: string;
+  source: string;
+}
+
 const statusIcons = {
   todo: <Circle className="h-4 w-4 text-muted-foreground" />,
   in_progress: <Clock className="h-4 w-4 text-amber-500" />,
@@ -72,19 +78,23 @@ export default function CollectionDashboard({
   const [collection, setCollection] = useState<Collection | null>(null);
   const [products, setProducts] = useState<CollectionProduct[]>([]);
   const [allTemplates, setAllTemplates] = useState<DesignTemplate[]>([]);
+  const [allAssets, setAllAssets] = useState<AssetItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
 
   async function fetchData() {
-    const [colRes, prodsRes, templatesRes] = await Promise.all([
+    const [colRes, prodsRes, templatesRes, assetsRes] = await Promise.all([
       fetch(`/api/admin/collections/${id}`),
       fetch(`/api/admin/collections/${id}/products`),
       fetch("/api/admin/templates"),
+      fetch(`/api/admin/collections/${id}/assets`),
     ]);
     setCollection(await colRes.json());
     setProducts(await prodsRes.json());
     setAllTemplates(await templatesRes.json());
+    const assetData = await assetsRes.json();
+    setAllAssets(Array.isArray(assetData) ? assetData : []);
     setLoading(false);
   }
 
@@ -183,14 +193,8 @@ export default function CollectionDashboard({
   if (loading) return <p className="text-muted-foreground">Loading...</p>;
   if (!collection) return <p className="text-muted-foreground">Collection not found.</p>;
 
-  // Merge uploaded assets (Supabase storage) with local files (public/designs/{slug}/)
-  const uploadedAssets = collection.preview_images || [];
-  const localAssets = collection.local_assets || [];
-  const allLocalUrls = new Set(localAssets);
-  const assets = [
-    ...uploadedAssets,
-    ...localAssets.filter((url) => !uploadedAssets.includes(url)),
-  ];
+  // Use assets from the dedicated assets API (covers Supabase Storage + local)
+  const assets = allAssets.map((a) => a.url);
 
   // Group products by category
   const grouped: Record<string, CollectionProduct[]> = {};
@@ -285,8 +289,6 @@ export default function CollectionDashboard({
               {assets.map((url, i) => (
                 <div key={i} className="relative group aspect-square rounded overflow-hidden bg-muted border border-border">
                   <img src={url} alt="" className="w-full h-full object-cover" />
-                  {/* Only show remove for uploaded assets, not local files */}
-                  {!allLocalUrls.has(url) && (
                   <button
                     type="button"
                     onClick={() => removeAsset(url)}
@@ -294,7 +296,6 @@ export default function CollectionDashboard({
                   >
                     <X className="h-3 w-3" />
                   </button>
-                  )}
                 </div>
               ))}
             </div>

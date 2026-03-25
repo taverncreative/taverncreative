@@ -153,6 +153,7 @@ export default function TemplateDetailPage({
   const [fontSearch, setFontSearch] = useState("");
   const [customerFonts, setCustomerFonts] = useState<string[]>([]);
   const [contextualSwatches, setContextualSwatches] = useState<string[]>([]);
+  const [thumbnailUrl, setThumbnailUrl] = useState("");
 
   // Collection context — design assets
   const [collectionName, setCollectionName] = useState("");
@@ -355,7 +356,11 @@ export default function TemplateDetailPage({
         const colRes = await fetch(`/api/admin/collections/${collectionId}`);
         const col = await colRes.json();
         setCollectionName(col.name || "");
-        setCollectionAssets(col.preview_images || []);
+        // Fetch ALL assets from Supabase Storage + local filesystem via assets API
+        const assetsRes = await fetch(`/api/admin/collections/${collectionId}/assets`);
+        const assetsData = await assetsRes.json();
+        const assetUrls = Array.isArray(assetsData) ? assetsData.map((a: { url: string }) => a.url) : (col.preview_images || []);
+        setCollectionAssets(assetUrls);
         // Load saved placed assets for this collection+template combo
         if (collectionProductId) {
           const cpRes = await fetch(`/api/admin/collections/${collectionId}/products`);
@@ -867,6 +872,73 @@ export default function TemplateDetailPage({
                     <p key={f} className="text-xs text-foreground/70" style={{ fontFamily: `'${f}', sans-serif` }}>{f}</p>
                   ))}
                 </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Product Thumbnail — manual upload for shop listing image */}
+          {collectionId && (
+            <Card>
+              <CardHeader className="py-3">
+                <CardTitle className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Product Thumbnail
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <p className="text-[10px] text-muted-foreground mb-2">
+                  Drag & drop the image to use as the shop listing thumbnail.
+                </p>
+                {thumbnailUrl ? (
+                  <div className="relative group">
+                    <img src={thumbnailUrl} alt="Thumbnail" className="w-full rounded border border-border" />
+                    <button
+                      type="button"
+                      onClick={() => setThumbnailUrl("")}
+                      className="absolute top-1 right-1 bg-black/60 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </div>
+                ) : (
+                  <div
+                    className="border-2 border-dashed border-border rounded-lg p-4 text-center cursor-pointer hover:border-foreground/30 transition-colors"
+                    onDragOver={(e) => { e.preventDefault(); e.currentTarget.classList.add("border-foreground/40"); }}
+                    onDragLeave={(e) => { e.currentTarget.classList.remove("border-foreground/40"); }}
+                    onDrop={async (e) => {
+                      e.preventDefault();
+                      e.currentTarget.classList.remove("border-foreground/40");
+                      const file = e.dataTransfer.files[0];
+                      if (!file || !collectionId) return;
+                      const formData = new FormData();
+                      formData.append("file", file);
+                      formData.append("collection_id", collectionId);
+                      formData.append("purpose", "thumbnail");
+                      const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
+                      const data = await res.json();
+                      if (data.url) setThumbnailUrl(data.url);
+                    }}
+                    onClick={() => {
+                      const input = document.createElement("input");
+                      input.type = "file";
+                      input.accept = "image/*";
+                      input.onchange = async (ev) => {
+                        const file = (ev.target as HTMLInputElement).files?.[0];
+                        if (!file || !collectionId) return;
+                        const formData = new FormData();
+                        formData.append("file", file);
+                        formData.append("collection_id", collectionId);
+                        formData.append("purpose", "thumbnail");
+                        const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
+                        const data = await res.json();
+                        if (data.url) setThumbnailUrl(data.url);
+                      };
+                      input.click();
+                    }}
+                  >
+                    <ImageIcon className="h-5 w-5 mx-auto mb-1 text-muted-foreground" />
+                    <p className="text-[10px] text-muted-foreground">Drop or click to upload</p>
+                  </div>
+                )}
               </CardContent>
             </Card>
           )}

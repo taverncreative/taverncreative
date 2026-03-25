@@ -19,6 +19,8 @@ export function LiveDesigner({
   onColourChange,
   onSwatchesExtracted,
   onFieldClick,
+  artworkUrl: artworkUrlProp,
+  placedAssets,
 }: LiveDesignerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
@@ -108,10 +110,12 @@ export function LiveDesigner({
       }
       onSwatchesExtracted(unique);
     };
-    img.src = `/designs/${collectionSlug}/preview.webp`;
-  }, [collectionSlug, onSwatchesExtracted]);
+    const imgSrc = artworkUrlProp || `https://gelwujnrilhppwxnapvt.supabase.co/storage/v1/object/public/design-assets/${collectionSlug}/preview.webp`;
+    img.src = imgSrc;
+  }, [collectionSlug, onSwatchesExtracted, artworkUrlProp]);
 
-  const artworkUrl = `/designs/${collectionSlug}/preview.webp`;
+  // Use artwork URL from prop (metadata_snapshot) or fall back to Supabase Storage
+  const artworkUrl = artworkUrlProp || `https://gelwujnrilhppwxnapvt.supabase.co/storage/v1/object/public/design-assets/${collectionSlug}/preview.webp`;
 
   return (
     <div
@@ -122,8 +126,31 @@ export function LiveDesigner({
         filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.08)) drop-shadow(0 1px 3px rgba(0,0,0,0.06))",
       }}
     >
-      <img src={artworkUrl} alt={`${collectionName} design`}
-        className="absolute inset-0 w-full h-full object-cover" />
+      {/* Background: either placed assets from admin, or fallback collection preview */}
+      {placedAssets && placedAssets.length > 0 ? (
+        <>
+          <div className="absolute inset-0 bg-white" />
+          {placedAssets.map((asset, i) => {
+            const BLEED = 3;
+            const totalW = artWidthMm + BLEED * 2;
+            const totalH = artHeightMm + BLEED * 2;
+            const left = ((asset.x_mm + BLEED) / totalW) * 100;
+            const top = ((asset.y_mm + BLEED) / totalH) * 100;
+            const width = (asset.width_mm / totalW) * 100;
+            return (
+              <img key={i} src={asset.url} alt=""
+                className="absolute pointer-events-none"
+                style={{
+                  left: `${left}%`, top: `${top}%`, width: `${width}%`,
+                  transform: asset.rotation_deg ? `rotate(${asset.rotation_deg}deg)` : undefined,
+                }} />
+            );
+          })}
+        </>
+      ) : (
+        <img src={artworkUrl} alt={`${collectionName} design`}
+          className="absolute inset-0 w-full h-full object-cover" />
+      )}
       <div className="absolute inset-0 pointer-events-none mix-blend-multiply z-[1]"
         style={{ backgroundColor: "rgba(254, 252, 248, 1)" }} />
       <img src="/texture-landscape.webp" alt=""
@@ -139,6 +166,44 @@ export function LiveDesigner({
                 style={{ width: cf.finalFontPx, height: cf.finalFontPx }}>
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
               </svg>
+            </div>
+          );
+        }
+
+        // Names field: render as 3 lines (Name1 / connector / Name2)
+        if (cf.fieldType === "names") {
+          const parts = cf.text.split("\n");
+          // Find the original field for connector settings
+          const srcField = fields.find((f) => f.label === cf.label);
+          const connSize = (srcField?.names_connector_size || 18) * (containerSize.width / (artWidthMm * 3));
+          const connFont = srcField?.names_connector_font || cf.fontFamily;
+          const connColour = srcField?.names_connector_highlight
+            ? (selectedColour || highlightColour)
+            : (srcField?.names_connector_colour || "#1a1a1a");
+          const lineSpacing = srcField?.names_line_spacing || 1.0;
+
+          return (
+            <div key={cf.label} className="absolute left-0 right-0 z-[2] cursor-pointer"
+              style={{ top: cf.computedY, display: "flex", flexDirection: "column", alignItems: "center" }}
+              onClick={() => onFieldClick?.(cf.label)}>
+              {parts.map((part, pi) => {
+                const isConnector = pi === 1 && parts.length === 3;
+                return (
+                  <p key={pi} style={{
+                    fontFamily: `'${isConnector ? connFont : cf.fontFamily}', sans-serif`,
+                    fontSize: isConnector ? connSize : cf.finalFontPx,
+                    fontWeight: cf.fontWeight,
+                    textTransform: cf.isUppercase ? "uppercase" : "none",
+                    color: isConnector ? connColour : cf.colour,
+                    textAlign: "center",
+                    lineHeight: lineSpacing,
+                    margin: 0, padding: 0,
+                    WebkitTextStroke: cf.textStroke ? `${cf.textStroke * (cf.finalFontPx / cf.baseFontPx)}px ${cf.colour}` : undefined,
+                    paintOrder: cf.textStroke ? "stroke fill" : undefined,
+                    letterSpacing: cf.letterSpacing ? `${cf.letterSpacing}em` : undefined,
+                  } as React.CSSProperties}>{part}</p>
+                );
+              })}
             </div>
           );
         }
@@ -160,8 +225,8 @@ export function LiveDesigner({
               transformOrigin: "center",
               color: cf.colour,
               textAlign: "center",
-              whiteSpace: "nowrap",
-              lineHeight: 1.2,
+              whiteSpace: cf.fieldType === "textarea" ? "pre-wrap" : "nowrap",
+              lineHeight: fields.find((f) => f.label === cf.label)?.line_spacing || 1.2,
               letterSpacing: cf.letterSpacing ? `${cf.letterSpacing}em` : undefined,
               WebkitTextStroke: cf.textStroke ? `${cf.textStroke * (cf.finalFontPx / cf.baseFontPx)}px ${cf.colour}` : undefined,
               paintOrder: cf.textStroke ? "stroke fill" : undefined,

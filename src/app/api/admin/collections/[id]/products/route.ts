@@ -53,8 +53,9 @@ export async function PATCH(
   if (body.field_snapshot !== undefined) updates.field_snapshot = body.field_snapshot;
   if (body.metadata_snapshot !== undefined) updates.metadata_snapshot = body.metadata_snapshot;
 
-  // Commit/uncommit — sync to the products table for the storefront
-  if (body.is_live !== undefined) {
+  // Track if we need to sync to storefront
+  const shouldSync = body.is_live !== undefined;
+  if (shouldSync) {
     updates.is_live = body.is_live;
     updates.committed_at = body.is_live ? new Date().toISOString() : null;
 
@@ -63,11 +64,9 @@ export async function PATCH(
       collection_product_id: body.product_id,
       action: body.is_live ? "committed" : "uncommitted",
     });
-
-    // Sync to storefront products table
-    await syncProductToStorefront(supabase, collectionId, body.product_id, body.is_live);
   }
 
+  // FIRST: Update the collection_product row (so metadata_snapshot, field_snapshot etc are saved)
   if (Object.keys(updates).length > 0 && body.product_id) {
     const { data, error } = await supabase
       .from("collection_products")
@@ -79,7 +78,18 @@ export async function PATCH(
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
+
+    // THEN: Sync to storefront (reads the now-updated row with correct metadata_snapshot)
+    if (shouldSync) {
+      await syncProductToStorefront(supabase, collectionId, body.product_id, body.is_live);
+    }
+
     return NextResponse.json(data);
+  }
+
+  // If only syncing (no other updates), still need to sync
+  if (shouldSync) {
+    await syncProductToStorefront(supabase, collectionId, body.product_id, body.is_live);
   }
 
   return NextResponse.json({ success: true });

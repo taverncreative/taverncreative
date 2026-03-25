@@ -16,6 +16,24 @@ export interface DesignerField {
   allow_wrap?: boolean;
   letter_spacing?: number;
   text_stroke?: number;
+  line_spacing?: number;
+  // Names-specific
+  names_connector?: string;
+  names_connector_size?: number;
+  names_connector_colour?: string;
+  names_connector_font?: string;
+  names_line_spacing?: number;
+  names_connector_highlight?: boolean;
+}
+
+export interface PlacedAssetProps {
+  url: string;
+  x_mm: number;
+  y_mm: number;
+  width_mm: number;
+  height_mm: number;
+  aspect_ratio: number;
+  rotation_deg: number;
 }
 
 export interface LiveDesignerProps {
@@ -33,6 +51,8 @@ export interface LiveDesignerProps {
   onColourChange: (colour: string) => void;
   onSwatchesExtracted?: (swatches: string[]) => void;
   onFieldClick?: (fieldLabel: string) => void;
+  artworkUrl?: string;
+  placedAssets?: PlacedAssetProps[];
 }
 
 export interface FontRegistryEntry {

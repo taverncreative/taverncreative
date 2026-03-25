@@ -733,6 +733,10 @@ export default function TemplateDetailPage({
             highlight_colour: highlightColour,
             customer_swatches: customerSwatches,
             thumbnail_url: thumbnailUrl,
+            artwork_url: placedAssets.length > 0 ? placedAssets[0].url : undefined,
+            placed_assets: placedAssets,
+            artboard_width_mm: isLandscape ? Math.max(widthMm, heightMm) : widthMm,
+            artboard_height_mm: isLandscape ? Math.min(widthMm, heightMm) : heightMm,
           },
         }),
       });

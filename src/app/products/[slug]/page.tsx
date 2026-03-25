@@ -66,7 +66,15 @@ export default async function ProductPageServer({
     text_align: string; y_mm: number;
     options: Record<string, unknown> | null;
   }[] = [];
-  let templateMetadata: { highlight_colour?: string; customer_swatches?: string[] } = {};
+  let templateMetadata: {
+    highlight_colour?: string;
+    customer_swatches?: string[];
+    artwork_url?: string;
+    placed_assets?: Array<{url: string; x_mm: number; y_mm: number; width_mm: number; height_mm: number; aspect_ratio: number; rotation_deg: number}>;
+    thumbnail_url?: string;
+    artboard_width_mm?: number;
+    artboard_height_mm?: number;
+  } = {};
   let templateWidth = 148;
   let templateHeight = 105;
 
@@ -192,6 +200,8 @@ export default async function ProductPageServer({
         customerSwatches={templateMetadata.customer_swatches || []}
         pricingTiers={pricingTiers}
         basePrice={Number(product.base_price)}
+        artworkUrl={templateMetadata.artwork_url as string | undefined}
+        placedAssets={templateMetadata.placed_assets as Array<{url: string; x_mm: number; y_mm: number; width_mm: number; height_mm: number; aspect_ratio: number; rotation_deg: number}> | undefined}
       />
     </div>
   );

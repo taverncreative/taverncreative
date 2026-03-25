@@ -47,6 +47,16 @@ const WEDDING_PALETTE = [
 const DOUBLE_SIDED_SURCHARGE = 0.18;
 const QTY_PRESETS = [25, 50, 75, 100, 150];
 
+interface PlacedAsset {
+  url: string;
+  x_mm: number;
+  y_mm: number;
+  width_mm: number;
+  height_mm: number;
+  aspect_ratio: number;
+  rotation_deg: number;
+}
+
 interface ProductPageClientProps {
   productId: string;
   productName: string;
@@ -61,12 +71,14 @@ interface ProductPageClientProps {
   customerSwatches: string[];
   pricingTiers: { min_quantity: number; unit_price: number }[];
   basePrice: number;
+  artworkUrl?: string;
+  placedAssets?: PlacedAsset[];
 }
 
 export function ProductPage({
   productId, productName, productSlug, collectionName, collectionSlug, styleDesc,
   designerFields, artWidthMm, artHeightMm, highlightColour, customerSwatches,
-  pricingTiers, basePrice,
+  pricingTiers, basePrice, artworkUrl, placedAssets,
 }: ProductPageClientProps) {
   const router = useRouter();
   const { addItem } = useCart();
@@ -135,7 +147,15 @@ export function ProductPage({
   const isValidQty = pricingTiers.length > 0 ? getTotal(pricingTiers, quantity) !== null : quantity > 0;
 
   // Customer values for artboard
-  const namesDisplay = firstName && secondName ? `${firstName} & ${secondName}` : firstName || secondName || "";
+  // Find the names field to check if it's a "names" type (3-line rendering)
+  const namesField = designerFields.find((f) => f.field_type === "names" || f.label.toLowerCase() === "names");
+  const namesConnector = namesField?.names_connector || "&";
+  const isNamesType = namesField?.field_type === "names";
+  // For "names" type, join with newlines (3-line: Name1 / connector / Name2)
+  // For regular text, join with " & "
+  const namesDisplay = firstName && secondName
+    ? (isNamesType ? `${firstName}\n${namesConnector}\n${secondName}` : `${firstName} & ${secondName}`)
+    : firstName || secondName || "";
   const formatDateForCard = useCallback((dateStr: string, usFormat: boolean) => {
     if (!dateStr) return "";
     const d = new Date(dateStr);
@@ -288,6 +308,7 @@ export function ProductPage({
               showHeart={showHeart} selectedColour={selectedColour}
               onValueChange={() => {}} onColourChange={setSelectedColour}
               onSwatchesExtracted={setDesignSwatches} onFieldClick={handleArtboardFieldClick}
+              artworkUrl={artworkUrl} placedAssets={placedAssets}
             />
           ) : (
             <div className="relative w-full overflow-hidden rounded-sm"

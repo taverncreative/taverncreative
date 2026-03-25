@@ -160,6 +160,13 @@ export default async function ProductPageServer({
       text_width_pct: opts.text_width_pct as number | undefined,
       allow_wrap: opts.allow_wrap as boolean | undefined,
       letter_spacing: opts.letter_spacing as number | undefined,
+      text_stroke: opts.text_stroke as number | undefined,
+      line_spacing: opts.line_spacing as number | undefined,
+      names_connector: opts.names_connector as string | undefined,
+      names_connector_size: opts.names_connector_size as number | undefined,
+      names_connector_font: opts.names_connector_font as string | undefined,
+      names_connector_colour: opts.names_connector_colour as string | undefined,
+      names_line_spacing: opts.names_line_spacing as number | undefined,
     };
   });
 

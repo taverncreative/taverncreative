@@ -181,13 +181,23 @@ async function syncProductToStorefront(
       slug,
       description: `collection_product:${collectionProductId}`,
       base_price: basePrice,
-      mockup_images: (cp.mockup_images as string[])?.length
-        ? (cp.mockup_images as string[])
-        : [
-            `/designs/${collection.slug as string}/product.webp`,
-            `/designs/${collection.slug as string}/preview.webp`,
-            `/designs/${collection.slug as string}/thumbnail.webp`,
-          ],
+      mockup_images: (() => {
+        // Priority 1: Use admin-set thumbnail from metadata_snapshot
+        const meta = cp.metadata_snapshot as Record<string, unknown> | null;
+        if (meta?.thumbnail_url) {
+          return [meta.thumbnail_url as string];
+        }
+        // Priority 2: Use existing mockup_images
+        if ((cp.mockup_images as string[])?.length) {
+          return cp.mockup_images as string[];
+        }
+        // Priority 3: Fall back to Supabase Storage collection URLs
+        const baseUrl = `https://gelwujnrilhppwxnapvt.supabase.co/storage/v1/object/public/design-assets`;
+        return [
+          `${baseUrl}/${collection.slug as string}/product.webp`,
+          `${baseUrl}/${collection.slug as string}/preview.webp`,
+        ];
+      })(),
       is_published: true,
     };
 

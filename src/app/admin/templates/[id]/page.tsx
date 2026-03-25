@@ -370,13 +370,41 @@ export default function TemplateDetailPage({
         const assetsRes = await fetch(`/api/admin/collections/${collectionId}/assets`);
         const assetsData = await assetsRes.json();
         setCollectionAssets(Array.isArray(assetsData) ? assetsData : []);
-        // Load saved placed assets for this collection+template combo
+        // Load saved state for this collection product (field_snapshot, placed_assets, metadata)
         if (collectionProductId) {
           const cpRes = await fetch(`/api/admin/collections/${collectionId}/products`);
           const cps = await cpRes.json();
           const cp = Array.isArray(cps) ? cps.find((c: Record<string, unknown>) => c.id === collectionProductId) : null;
           if (cp?.placed_assets && Array.isArray(cp.placed_assets)) {
             setPlacedAssets(cp.placed_assets as PlacedAsset[]);
+          }
+          // CRITICAL: Load field_snapshot to restore admin's saved design
+          if (cp?.field_snapshot && Array.isArray(cp.field_snapshot) && cp.field_snapshot.length > 0) {
+            setFields(
+              (cp.field_snapshot as Record<string, unknown>[])
+                .sort((a, b) => (Number(a.sort_order) || 0) - (Number(b.sort_order) || 0))
+                .map((f) => {
+                  const opts = (f.options as Record<string, unknown>) || {};
+                  return {
+                    field_type: (opts.field_type as ExtendedFieldType) || (f.field_type as ExtendedFieldType),
+                    label: (f.label as string) || "",
+                    placeholder: (f.placeholder as string) || "",
+                    is_required: f.is_required as boolean,
+                    y_mm: Number(f.y_mm) || 0,
+                    font_size: Number(f.font_size) || 14,
+                    font_family: (f.text_align as string) && (f.text_align as string) !== "center" ? (f.text_align as string) : "Montserrat",
+                    text_align: "center",
+                    ...opts,
+                  } as FieldDraft;
+                })
+            );
+          }
+          // Load metadata_snapshot (highlight colour, customer swatches, thumbnail)
+          if (cp?.metadata_snapshot) {
+            const meta = cp.metadata_snapshot as Record<string, unknown>;
+            if (meta.highlight_colour) setHighlightColour(meta.highlight_colour as string);
+            if (Array.isArray(meta.customer_swatches)) setCustomerSwatches(meta.customer_swatches as string[]);
+            if (meta.thumbnail_url) setThumbnailUrl(meta.thumbnail_url as string);
           }
         }
         // Extract contextual swatches from the artwork
@@ -666,7 +694,7 @@ export default function TemplateDetailPage({
         text_align: f.font_family,
         y_mm: f.y_mm,
         options: {
-          ...(["repeater", "big_date", "heart", "tri_details"].includes(f.field_type) ? { field_type: f.field_type } : {}),
+          ...(["repeater", "big_date", "heart", "tri_details", "names"].includes(f.field_type) ? { field_type: f.field_type } : {}),
           ...(f.is_uppercase ? { is_uppercase: true } : {}),
           ...(f.font_weight && f.font_weight !== 400 ? { font_weight: f.font_weight } : {}),
           ...(f.is_highlight_colour ? { is_highlight_colour: true } : {}),
@@ -674,7 +702,23 @@ export default function TemplateDetailPage({
           ...(f.scale_y && f.scale_y !== 1 ? { scale_y: f.scale_y } : {}),
           ...(f.text_width_pct && f.text_width_pct !== 88 ? { text_width_pct: f.text_width_pct } : {}),
           ...(f.letter_spacing ? { letter_spacing: f.letter_spacing } : {}),
+          ...(f.text_stroke ? { text_stroke: f.text_stroke } : {}),
+          ...(f.line_spacing ? { line_spacing: f.line_spacing } : {}),
           ...(f.big_date_format ? { big_date_format: f.big_date_format } : {}),
+          ...(f.field_type === "names" ? {
+            names_connector: f.names_connector || "&",
+            names_connector_size: f.names_connector_size || 18,
+            names_connector_colour: f.names_connector_colour || "#1a1a1a",
+            names_connector_font: f.names_connector_font || f.font_family,
+            names_line_spacing: f.names_line_spacing || 1.2,
+          } : {}),
+          ...(f.field_type === "repeater" ? {
+            repeater_columns: f.repeater_columns,
+            repeater_header_font: f.repeater_header_font,
+            repeater_header_size: f.repeater_header_size,
+            repeater_body_font: f.repeater_body_font,
+            repeater_body_size: f.repeater_body_size,
+          } : {}),
         },
       }));
 
@@ -688,6 +732,7 @@ export default function TemplateDetailPage({
           metadata_snapshot: {
             highlight_colour: highlightColour,
             customer_swatches: customerSwatches,
+            thumbnail_url: thumbnailUrl,
           },
         }),
       });

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, use } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, Plus, Trash2, Save, Type, Calendar, Clock, AlignLeft, ChevronUp, ChevronDown, Repeat, Columns2, Columns3, Image as ImageIcon, Move, X, Heart, Hash } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, Save, Type, Calendar, Clock, AlignLeft, ChevronUp, ChevronDown, Repeat, Columns2, Columns3, Image as ImageIcon, Move, X, Heart, Hash, Users, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,7 +19,7 @@ import { Separator } from "@/components/ui/separator";
 import type { FieldType, ProductCategory } from "@/lib/types/database";
 
 type FoldType = "none" | "half" | "tri" | "gate" | "z";
-type ExtendedFieldType = FieldType | "repeater" | "big_date" | "heart" | "tri_details";
+type ExtendedFieldType = FieldType | "repeater" | "big_date" | "heart" | "tri_details" | "names";
 
 const BLEED_MM = 3; // Fixed 3mm bleed
 
@@ -29,6 +29,7 @@ const fieldTypes: { type: ExtendedFieldType; label: string; icon: typeof Type; d
   { type: "date", label: "Date", icon: Calendar },
   { type: "time", label: "Time", icon: Clock },
   { type: "textarea", label: "Text Area", icon: AlignLeft },
+  { type: "names", label: "Names", icon: Users, desc: "Name & Name (3 lines)" },
   { type: "big_date", label: "Big Date", icon: Hash, desc: "DD | MM | YY" },
   { type: "heart", label: "Heart", icon: Heart, desc: "❤ divider" },
   { type: "tri_details", label: "Tri Details", icon: AlignLeft, desc: "Names | Date | Venue" },
@@ -40,6 +41,7 @@ const fieldTypeIcons: Record<string, typeof Type> = {
   date: Calendar,
   time: Clock,
   textarea: AlignLeft,
+  names: Users,
   big_date: Hash,
   heart: Heart,
   tri_details: AlignLeft,
@@ -116,6 +118,12 @@ interface FieldDraft {
   letter_spacing?: number; // letter spacing in em units (default 0)
   text_stroke?: number; // stroke width in px (0 = none, 0.1-2.0 range)
   big_date_format?: "dmy" | "mdy"; // DD|MM|YY or MM|DD|YY
+  // Names-specific (3-line: Name1 / connector / Name2)
+  names_connector?: string; // default "&"
+  names_connector_size?: number; // font size for connector
+  names_connector_colour?: string; // colour for connector (default black)
+  names_connector_font?: string; // font for connector
+  names_line_spacing?: number; // line spacing multiplier (default 1.2)
   // Repeater-specific
   repeater_columns?: 1 | 2 | 3;
   repeater_header_font?: string;
@@ -400,15 +408,19 @@ export default function TemplateDetailPage({
   function addField(type: ExtendedFieldType) {
     const defaultLabel =
       type === "date" ? "Date" : type === "time" ? "Time" : type === "repeater" ? "Items"
-      : type === "big_date" ? "Date" : type === "heart" ? "❤" : type === "tri_details" ? "Details" : "";
+      : type === "big_date" ? "Date" : type === "heart" ? "❤" : type === "tri_details" ? "Details"
+      : type === "names" ? "Names" : "";
     const lastY = fields.length > 0 ? fields[fields.length - 1].y_mm + 12 : artH * 0.3;
     const newField: FieldDraft = {
       field_type: type,
       label: defaultLabel,
-      placeholder: type === "big_date" ? "25 | 07 | 28" : type === "heart" ? "❤" : type === "tri_details" ? "Emily & James | 25.10.28 | Solton Manor" : "",
-      is_required: type === "heart" || type === "tri_details" ? false : true,
+      placeholder: type === "big_date" ? "25 | 07 | 28" : type === "heart" ? "❤"
+        : type === "tri_details" ? "Emily & James | 25.10.28 | Solton Manor"
+        : type === "names" ? "Ella West & Myles Porter" : "",
+      is_required: type === "heart" || type === "tri_details" ? false : type === "names" ? true : true,
       y_mm: lastY,
-      font_size: type === "repeater" ? 12 : type === "big_date" ? 28 : type === "heart" ? 12 : type === "tri_details" ? 11 : 14,
+      font_size: type === "repeater" ? 12 : type === "big_date" ? 28 : type === "heart" ? 12
+        : type === "tri_details" ? 11 : type === "names" ? 36 : 14,
       font_family: "Montserrat",
       text_align: "center",
       ...(type === "big_date" ? {
@@ -418,6 +430,14 @@ export default function TemplateDetailPage({
       ...(type === "tri_details" ? {
         is_uppercase: true,
         font_weight: 600,
+      } : {}),
+      ...(type === "names" ? {
+        names_connector: "&",
+        names_connector_size: 18,
+        names_connector_colour: "#1a1a1a",
+        names_connector_font: "Montserrat",
+        names_line_spacing: 1.2,
+        is_highlight_colour: true,
       } : {}),
       ...(type === "repeater" ? {
         repeater_columns: 1,
@@ -494,7 +514,7 @@ export default function TemplateDetailPage({
         is_double_sided: isDoubleSided,
         fold,
         fields: fields.map((f, i) => ({
-          field_type: ["repeater", "big_date", "heart", "tri_details"].includes(f.field_type) ? "text" : f.field_type,
+          field_type: ["repeater", "big_date", "heart", "tri_details", "names"].includes(f.field_type) ? "text" : f.field_type,
           label: f.label,
           placeholder: f.placeholder,
           is_required: f.is_required,
@@ -513,6 +533,13 @@ export default function TemplateDetailPage({
             ...(f.letter_spacing ? { letter_spacing: f.letter_spacing } : {}),
             ...(f.text_stroke ? { text_stroke: f.text_stroke } : {}),
             ...(f.big_date_format ? { big_date_format: f.big_date_format } : {}),
+            ...(f.field_type === "names" ? {
+              names_connector: f.names_connector || "&",
+              names_connector_size: f.names_connector_size || 18,
+              names_connector_colour: f.names_connector_colour || "#1a1a1a",
+              names_connector_font: f.names_connector_font || f.font_family,
+              names_line_spacing: f.names_line_spacing || 1.2,
+            } : {}),
             ...(f.field_type === "repeater" ? {
               repeater_columns: f.repeater_columns,
               repeater_header_font: f.repeater_header_font,
@@ -574,6 +601,13 @@ export default function TemplateDetailPage({
             ...(f.letter_spacing ? { letter_spacing: f.letter_spacing } : {}),
             ...(f.text_stroke ? { text_stroke: f.text_stroke } : {}),
             ...(f.big_date_format ? { big_date_format: f.big_date_format } : {}),
+            ...(f.field_type === "names" ? {
+              names_connector: f.names_connector || "&",
+              names_connector_size: f.names_connector_size || 18,
+              names_connector_colour: f.names_connector_colour || "#1a1a1a",
+              names_connector_font: f.names_connector_font || f.font_family,
+              names_line_spacing: f.names_line_spacing || 1.2,
+            } : {}),
             ...(f.field_type === "repeater" ? {
               repeater_columns: f.repeater_columns,
               repeater_header_font: f.repeater_header_font,
@@ -854,6 +888,43 @@ export default function TemplateDetailPage({
                   </button>
                 ))}
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Font Uploader */}
+          <Card>
+            <CardHeader className="py-3">
+              <CardTitle className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
+                <Upload className="h-3.5 w-3.5" />
+                Upload Font
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <label className="cursor-pointer">
+                <div className="border-2 border-dashed border-border rounded-lg p-3 text-center hover:border-foreground/30 transition-colors">
+                  <p className="text-[10px] text-muted-foreground">Drop TTF or OTF file</p>
+                </div>
+                <input
+                  type="file"
+                  accept=".ttf,.otf,.woff,.woff2"
+                  className="hidden"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    const formData = new FormData();
+                    formData.append("file", file);
+                    const res = await fetch("/api/admin/fonts", { method: "POST", body: formData });
+                    const data = await res.json();
+                    if (data.family) {
+                      setAllFonts((prev) => [...new Set([...prev, data.family])].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())));
+                      alert(`Font "${data.family}" uploaded successfully!`);
+                    } else {
+                      alert(data.error || "Upload failed");
+                    }
+                    e.target.value = "";
+                  }}
+                />
+              </label>
             </CardContent>
           </Card>
 
@@ -1198,6 +1269,65 @@ export default function TemplateDetailPage({
                     <svg width={heartSize} height={heartSize} viewBox="0 0 24 24" fill={fieldColour}>
                       <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                     </svg>
+                  </div>
+                );
+              }
+
+              // Names field — 3 lines: Name1 / connector / Name2
+              if (field.field_type === "names") {
+                const connector = field.names_connector || "&";
+                const connectorSize = (field.names_connector_size || 18) * scale * 0.28;
+                const nameSize = field.font_size * scale * 0.28;
+                const connectorColour = field.names_connector_colour || "#1a1a1a";
+                const connectorFont = field.names_connector_font || field.font_family;
+                const lineSpacing = field.names_line_spacing || 1.2;
+                const placeholder = field.placeholder || "Ella West & Myles Porter";
+                const parts = placeholder.split(/\s*&\s*|\s*and\s*/i);
+                const name1 = parts[0] || "Ella West";
+                const name2 = parts[1] || "Myles Porter";
+
+                return (
+                  <div key={i}
+                    className={`absolute left-0 right-0 cursor-pointer transition-all ${isSelected ? "ring-2 ring-blue-500 ring-offset-1" : ""}`}
+                    style={{
+                      top: (BLEED_MM + field.y_mm) * scale,
+                      textAlign: "center",
+                    }}
+                    onClick={(e) => { e.stopPropagation(); setSelectedFieldIndex(i); }}>
+                    {/* Name 1 */}
+                    <p style={{
+                      fontFamily: `'${field.font_family}', sans-serif`,
+                      fontSize: nameSize,
+                      color: fieldColour,
+                      lineHeight: lineSpacing,
+                      transform: scaleY !== 1 ? `scaleY(${scaleY})` : undefined,
+                      WebkitTextStroke: field.text_stroke ? `${field.text_stroke * scale * 0.28}px ${fieldColour}` : undefined,
+                      paintOrder: field.text_stroke ? "stroke fill" : undefined,
+                    } as React.CSSProperties}>
+                      {name1}
+                    </p>
+                    {/* Connector */}
+                    <p style={{
+                      fontFamily: `'${connectorFont}', sans-serif`,
+                      fontSize: connectorSize,
+                      color: connectorColour,
+                      lineHeight: lineSpacing,
+                      fontStyle: "italic",
+                    }}>
+                      {connector}
+                    </p>
+                    {/* Name 2 */}
+                    <p style={{
+                      fontFamily: `'${field.font_family}', sans-serif`,
+                      fontSize: nameSize,
+                      color: fieldColour,
+                      lineHeight: lineSpacing,
+                      transform: scaleY !== 1 ? `scaleY(${scaleY})` : undefined,
+                      WebkitTextStroke: field.text_stroke ? `${field.text_stroke * scale * 0.28}px ${fieldColour}` : undefined,
+                      paintOrder: field.text_stroke ? "stroke fill" : undefined,
+                    } as React.CSSProperties}>
+                      {name2}
+                    </p>
                   </div>
                 );
               }
@@ -1708,6 +1838,60 @@ export default function TemplateDetailPage({
                           </button>
                         </div>
                       </div>
+                    )}
+                    {/* Names field — connector settings */}
+                    {selectedField.field_type === "names" && (
+                      <>
+                        <Separator />
+                        <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Connector</p>
+                        <div>
+                          <Label className="text-xs">Connector Text</Label>
+                          <Input value={selectedField.names_connector || "&"}
+                            onChange={(e) => updateField(selectedFieldIndex!, { names_connector: e.target.value })}
+                            className="h-8 text-sm" placeholder="&" />
+                        </div>
+                        <div>
+                          <Label className="text-xs">Connector Font Size</Label>
+                          <Input type="number" value={selectedField.names_connector_size || 18}
+                            onChange={(e) => updateField(selectedFieldIndex!, { names_connector_size: Number(e.target.value) })}
+                            className="h-8 text-sm" />
+                        </div>
+                        <div>
+                          <Label className="text-xs">Connector Font</Label>
+                          <Select value={selectedField.names_connector_font || selectedField.font_family}
+                            onValueChange={(v) => updateField(selectedFieldIndex!, { names_connector_font: v })}>
+                            <SelectTrigger className="h-8 text-sm"><SelectValue /></SelectTrigger>
+                            <SelectContent>
+                              {allFonts.slice(0, 50).map((f) => (
+                                <SelectItem key={f} value={f}>
+                                  <span style={{ fontFamily: `'${f}', sans-serif` }}>{f}</span>
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div>
+                          <Label className="text-xs">Connector Colour</Label>
+                          <div className="flex items-center gap-2 mt-1">
+                            <input type="color" value={selectedField.names_connector_colour || "#1a1a1a"}
+                              onChange={(e) => updateField(selectedFieldIndex!, { names_connector_colour: e.target.value })}
+                              className="w-8 h-8 rounded border border-border cursor-pointer" />
+                            <Input value={selectedField.names_connector_colour || "#1a1a1a"}
+                              onChange={(e) => updateField(selectedFieldIndex!, { names_connector_colour: e.target.value })}
+                              className="h-8 text-sm flex-1" />
+                          </div>
+                        </div>
+                        <div>
+                          <Label className="text-xs">Line Spacing</Label>
+                          <div className="flex items-center gap-2">
+                            <input type="range" min="0.8" max="2.5" step="0.1"
+                              value={selectedField.names_line_spacing || 1.2}
+                              onChange={(e) => updateField(selectedFieldIndex!, { names_line_spacing: Number(e.target.value) })}
+                              className="flex-1" />
+                            <span className="text-xs text-muted-foreground w-8">{selectedField.names_line_spacing || 1.2}×</span>
+                          </div>
+                        </div>
+                      </>
                     )}
                     <Separator />
                     {/* Reorder this field */}

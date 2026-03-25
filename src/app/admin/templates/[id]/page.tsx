@@ -157,7 +157,8 @@ export default function TemplateDetailPage({
 
   // Collection context — design assets
   const [collectionName, setCollectionName] = useState("");
-  const [collectionAssets, setCollectionAssets] = useState<string[]>([]);
+  const [collectionAssets, setCollectionAssets] = useState<{ url: string; name: string; group: string }[]>([]);
+  const [pickingThumbnail, setPickingThumbnail] = useState(false);
 
   // Placed assets on the artboard (collection design elements)
   interface PlacedAsset {
@@ -356,11 +357,10 @@ export default function TemplateDetailPage({
         const colRes = await fetch(`/api/admin/collections/${collectionId}`);
         const col = await colRes.json();
         setCollectionName(col.name || "");
-        // Fetch ALL assets from Supabase Storage + local filesystem via assets API
+        // Fetch ALL assets from Supabase Storage via assets API (with grouping)
         const assetsRes = await fetch(`/api/admin/collections/${collectionId}/assets`);
         const assetsData = await assetsRes.json();
-        const assetUrls = Array.isArray(assetsData) ? assetsData.map((a: { url: string }) => a.url) : (col.preview_images || []);
-        setCollectionAssets(assetUrls);
+        setCollectionAssets(Array.isArray(assetsData) ? assetsData : []);
         // Load saved placed assets for this collection+template combo
         if (collectionProductId) {
           const cpRes = await fetch(`/api/admin/collections/${collectionId}/products`);
@@ -876,7 +876,7 @@ export default function TemplateDetailPage({
             </Card>
           )}
 
-          {/* Product Thumbnail — manual upload for shop listing image */}
+          {/* Product Thumbnail — pick from asset bank */}
           {collectionId && (
             <Card>
               <CardHeader className="py-3">
@@ -885,9 +885,6 @@ export default function TemplateDetailPage({
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <p className="text-[10px] text-muted-foreground mb-2">
-                  Drag & drop the image to use as the shop listing thumbnail.
-                </p>
                 {thumbnailUrl ? (
                   <div className="relative group">
                     <img src={thumbnailUrl} alt="Thumbnail" className="w-full rounded border border-border" />
@@ -898,46 +895,27 @@ export default function TemplateDetailPage({
                     >
                       <X className="h-3 w-3" />
                     </button>
+                    <button
+                      type="button"
+                      onClick={() => setPickingThumbnail(true)}
+                      className="w-full mt-2 text-[10px] text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      Change thumbnail
+                    </button>
                   </div>
                 ) : (
-                  <div
-                    className="border-2 border-dashed border-border rounded-lg p-4 text-center cursor-pointer hover:border-foreground/30 transition-colors"
-                    onDragOver={(e) => { e.preventDefault(); e.currentTarget.classList.add("border-foreground/40"); }}
-                    onDragLeave={(e) => { e.currentTarget.classList.remove("border-foreground/40"); }}
-                    onDrop={async (e) => {
-                      e.preventDefault();
-                      e.currentTarget.classList.remove("border-foreground/40");
-                      const file = e.dataTransfer.files[0];
-                      if (!file || !collectionId) return;
-                      const formData = new FormData();
-                      formData.append("file", file);
-                      formData.append("collection_id", collectionId);
-                      formData.append("purpose", "thumbnail");
-                      const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
-                      const data = await res.json();
-                      if (data.url) setThumbnailUrl(data.url);
-                    }}
-                    onClick={() => {
-                      const input = document.createElement("input");
-                      input.type = "file";
-                      input.accept = "image/*";
-                      input.onchange = async (ev) => {
-                        const file = (ev.target as HTMLInputElement).files?.[0];
-                        if (!file || !collectionId) return;
-                        const formData = new FormData();
-                        formData.append("file", file);
-                        formData.append("collection_id", collectionId);
-                        formData.append("purpose", "thumbnail");
-                        const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
-                        const data = await res.json();
-                        if (data.url) setThumbnailUrl(data.url);
-                      };
-                      input.click();
-                    }}
+                  <button
+                    type="button"
+                    onClick={() => setPickingThumbnail(true)}
+                    className={`w-full border-2 border-dashed rounded-lg p-4 text-center transition-colors ${
+                      pickingThumbnail ? "border-blue-400 bg-blue-50" : "border-border hover:border-foreground/30"
+                    }`}
                   >
                     <ImageIcon className="h-5 w-5 mx-auto mb-1 text-muted-foreground" />
-                    <p className="text-[10px] text-muted-foreground">Drop or click to upload</p>
-                  </div>
+                    <p className="text-[10px] text-muted-foreground">
+                      {pickingThumbnail ? "Now click an asset below..." : "Pick from asset bank"}
+                    </p>
+                  </button>
                 )}
               </CardContent>
             </Card>
@@ -1295,58 +1273,91 @@ export default function TemplateDetailPage({
             {artW}×{artH}mm &middot; {isLandscape ? "Landscape" : "Portrait"} &middot; 3mm bleed
           </p>
 
-          {/* Asset bank — only in collection context */}
-          {collectionId && collectionAssets.length > 0 && (
-            <Card className="mt-6 w-full max-w-lg">
-              <CardHeader className="py-3">
-                <CardTitle className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
-                  <ImageIcon className="h-3.5 w-3.5" />
-                  {collectionName} Assets ({collectionAssets.length})
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <p className="text-[10px] text-muted-foreground mb-2">Click an asset to place it on the artboard</p>
-                <div className="grid grid-cols-4 gap-2">
-                  {collectionAssets.map((url, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      className="aspect-square rounded overflow-hidden bg-muted border border-border hover:border-foreground/50 transition-colors"
-                      onClick={() => {
-                        // Load image to get natural aspect ratio
-                        const img = new window.Image();
-                        img.onload = () => {
-                          const ar = img.naturalWidth / img.naturalHeight;
-                          const assetW = artW * 0.4;
-                          const assetH = assetW / ar;
-                          setPlacedAssets((prev) => [
-                            ...prev,
-                            {
-                              url,
-                              x_mm: (artW - assetW) / 2,
-                              y_mm: (artH - assetH) / 2,
-                              width_mm: assetW,
-                              height_mm: assetH,
-                              aspect_ratio: ar,
-                              rotation_deg: 0,
-                              customer_move_x: false,
-                              customer_move_y: false,
-                              customer_nudge_limit_mm: 5,
-                            },
-                          ]);
-                          setSelectedAssetIndex(placedAssets.length);
-                          setSelectedFieldIndex(null);
-                        };
-                        img.src = url;
-                      }}
-                    >
-                      <img src={url} alt="" className="w-full h-full object-cover" />
-                    </button>
+          {/* Asset bank — only in collection context, grouped by category */}
+          {collectionId && collectionAssets.length > 0 && (() => {
+            // Group assets by their group field
+            const grouped: Record<string, typeof collectionAssets> = {};
+            for (const asset of collectionAssets) {
+              const g = asset.group || "Design Assets";
+              if (!grouped[g]) grouped[g] = [];
+              grouped[g].push(asset);
+            }
+
+            function placeAssetOnArtboard(url: string) {
+              const img = new window.Image();
+              img.onload = () => {
+                const ar = img.naturalWidth / img.naturalHeight;
+                const assetW = artW * 0.4;
+                const assetH = assetW / ar;
+                setPlacedAssets((prev) => [
+                  ...prev,
+                  {
+                    url,
+                    x_mm: (artW - assetW) / 2,
+                    y_mm: (artH - assetH) / 2,
+                    width_mm: assetW,
+                    height_mm: assetH,
+                    aspect_ratio: ar,
+                    rotation_deg: 0,
+                    customer_move_x: false,
+                    customer_move_y: false,
+                    customer_nudge_limit_mm: 5,
+                  },
+                ]);
+                setSelectedAssetIndex(placedAssets.length);
+                setSelectedFieldIndex(null);
+              };
+              img.src = url;
+            }
+
+            return (
+              <Card className="mt-6 w-full max-w-lg">
+                <CardHeader className="py-3">
+                  <CardTitle className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
+                    <ImageIcon className="h-3.5 w-3.5" />
+                    {collectionName} Assets ({collectionAssets.length})
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    {pickingThumbnail
+                      ? "Click an asset to set as product thumbnail"
+                      : "Click an asset to place it on the artboard"}
+                  </p>
+                  {Object.entries(grouped).map(([groupName, groupAssets]) => (
+                    <div key={groupName} className="mb-3">
+                      {Object.keys(grouped).length > 1 && (
+                        <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">{groupName}</p>
+                      )}
+                      <div className="grid grid-cols-4 gap-2">
+                        {groupAssets.map((asset, i) => (
+                          <button
+                            key={i}
+                            type="button"
+                            className={`aspect-square rounded overflow-hidden bg-muted border transition-colors ${
+                              pickingThumbnail
+                                ? "border-blue-300 hover:border-blue-500 ring-1 ring-blue-200"
+                                : "border-border hover:border-foreground/50"
+                            } ${thumbnailUrl === asset.url ? "ring-2 ring-green-500" : ""}`}
+                            onClick={() => {
+                              if (pickingThumbnail) {
+                                setThumbnailUrl(asset.url);
+                                setPickingThumbnail(false);
+                              } else {
+                                placeAssetOnArtboard(asset.url);
+                              }
+                            }}
+                          >
+                            <img src={asset.url} alt="" className="w-full h-full object-cover" />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   ))}
-                </div>
-              </CardContent>
-            </Card>
-          )}
+                </CardContent>
+              </Card>
+            );
+          })()}
 
           {/* Selected asset controls */}
           {selectedAssetIndex !== null && placedAssets[selectedAssetIndex] && (() => {

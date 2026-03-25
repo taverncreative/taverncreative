@@ -233,7 +233,7 @@ export default function CollectionDashboard({
         />
       </div>
 
-      {/* Asset Bank */}
+      {/* Asset Bank — read-only display, upload from main collections page */}
       <Card className="mb-8">
         <CardHeader className="py-3">
           <CardTitle className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
@@ -242,60 +242,15 @@ export default function CollectionDashboard({
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
-          {/* Drag & drop zone */}
-          <div
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-            className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors mb-4 ${
-              dragOver
-                ? "border-foreground bg-muted/50"
-                : "border-border hover:border-foreground/30"
-            }`}
-          >
-            {uploading ? (
-              <p className="text-sm text-muted-foreground">Uploading...</p>
-            ) : (
-              <>
-                <Upload className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
-                <p className="text-sm text-muted-foreground mb-1">
-                  Drag & drop design assets here
-                </p>
-                <p className="text-xs text-muted-foreground mb-3">
-                  PNG, JPG, SVG, WebP — up to 10MB each
-                </p>
-                <label className="cursor-pointer">
-                  <Button variant="outline" size="sm" asChild>
-                    <span>Browse files</span>
-                  </Button>
-                  <input
-                    type="file"
-                    multiple
-                    accept="image/png,image/jpeg,image/svg+xml,image/webp"
-                    className="hidden"
-                    onChange={(e) => {
-                      if (e.target.files) uploadFiles(e.target.files);
-                      e.target.value = "";
-                    }}
-                  />
-                </label>
-              </>
-            )}
-          </div>
-
-          {/* Asset grid */}
-          {assets.length > 0 && (
+          {assets.length === 0 ? (
+            <p className="text-sm text-muted-foreground text-center py-4">
+              No assets yet. Upload designs from the main Collections page.
+            </p>
+          ) : (
             <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
               {assets.map((url, i) => (
                 <div key={i} className="relative group aspect-square rounded overflow-hidden bg-muted border border-border">
                   <img src={url} alt="" className="w-full h-full object-cover" />
-                  <button
-                    type="button"
-                    onClick={() => removeAsset(url)}
-                    className="absolute top-1 right-1 bg-black/60 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    <X className="h-3 w-3" />
-                  </button>
                 </div>
               ))}
             </div>

@@ -55,7 +55,7 @@ export default function CartPage() {
                   <div className="relative w-full" style={{ aspectRatio: "148 / 105" }}>
                     {item.collectionSlug && (
                       <img
-                        src={`/designs/${item.collectionSlug}/preview.webp`}
+                        src={item.mockupImage || `https://gelwujnrilhppwxnapvt.supabase.co/storage/v1/object/public/design-assets/${item.collectionSlug}/product.webp`}
                         alt={item.productName}
                         className="absolute inset-0 w-full h-full object-cover"
                       />

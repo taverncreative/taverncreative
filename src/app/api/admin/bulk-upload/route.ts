@@ -125,39 +125,39 @@ export async function POST(request: NextRequest) {
       });
   }
 
-  // Find or create template for this product type
-  const categoryMap: Record<string, string> = {
-    save_the_dates: "save_the_dates",
-    invitations: "invitations",
-    on_the_day: "on_the_day",
-    thank_yous: "thank_yous",
-  };
-  const dbCategory = categoryMap[productType] || "save_the_dates";
+  // Only create collection_products if productType was explicitly provided
+  if (productType) {
+    const categoryMap: Record<string, string> = {
+      save_the_dates: "save_the_dates",
+      invitations: "invitations",
+      on_the_day: "on_the_day",
+      thank_yous: "thank_yous",
+    };
+    const dbCategory = categoryMap[productType] || productType;
 
-  const { data: templates } = await supabase
-    .from("design_templates")
-    .select("id")
-    .eq("category", dbCategory)
-    .limit(1);
-
-  if (templates?.length) {
-    const templateId = templates[0].id;
-
-    // Create collection_product if it doesn't exist
-    const { data: existingCp } = await supabase
-      .from("collection_products")
+    const { data: templates } = await supabase
+      .from("design_templates")
       .select("id")
-      .eq("collection_id", collectionId)
-      .eq("design_template_id", templateId)
-      .single();
+      .eq("category", dbCategory)
+      .limit(1);
 
-    if (!existingCp) {
-      await supabase.from("collection_products").insert({
-        collection_id: collectionId,
-        design_template_id: templateId,
-        status: "todo",
-        is_live: false,
-      });
+    if (templates?.length) {
+      const templateId = templates[0].id;
+      const { data: existingCp } = await supabase
+        .from("collection_products")
+        .select("id")
+        .eq("collection_id", collectionId)
+        .eq("design_template_id", templateId)
+        .single();
+
+      if (!existingCp) {
+        await supabase.from("collection_products").insert({
+          collection_id: collectionId,
+          design_template_id: templateId,
+          status: "todo",
+          is_live: false,
+        });
+      }
     }
   }
 

@@ -155,24 +155,22 @@ export default function AdminCollections() {
     }
 
     setPendingFiles({ textFiles, notextFiles });
-    setShowUploadDialog(true);
+    // Skip the dialog — process immediately
+    processUploadDirect({ textFiles, notextFiles });
   }
 
-  async function processUpload() {
-    if (!pendingFiles) return;
-    setShowUploadDialog(false);
+  async function processUploadDirect(files: { textFiles: Map<string, File>; notextFiles: Map<string, File> }) {
     setUploading(true);
     setUploadResults([]);
 
-    const { textFiles, notextFiles } = pendingFiles;
+    const { textFiles, notextFiles } = files;
     const allNames = new Set([...textFiles.keys(), ...notextFiles.keys()]);
-    const total = allNames.size * 2; // each design has up to 2 files
+    const total = allNames.size * 2;
     let current = 0;
 
     const results: UploadResult[] = [];
 
     for (const name of allNames) {
-      // Upload no-text version (artwork/preview)
       const notextFile = notextFiles.get(name);
       if (notextFile) {
         setUploadProgress({ current: ++current, total, name: `${name} (artwork)` });
@@ -180,7 +178,6 @@ export default function AdminCollections() {
         fd.append("file", notextFile);
         fd.append("designName", name);
         fd.append("fileType", "notext");
-        fd.append("productType", productType);
         const res = await fetch("/api/admin/bulk-upload", { method: "POST", body: fd });
         if (res.ok) {
           const data = await res.json();
@@ -188,7 +185,6 @@ export default function AdminCollections() {
         }
       }
 
-      // Upload text version (product/thumbnail)
       const textFile = textFiles.get(name);
       if (textFile) {
         setUploadProgress({ current: ++current, total, name: `${name} (product)` });
@@ -196,7 +192,6 @@ export default function AdminCollections() {
         fd.append("file", textFile);
         fd.append("designName", name);
         fd.append("fileType", "text");
-        fd.append("productType", productType);
         await fetch("/api/admin/bulk-upload", { method: "POST", body: fd });
         const existing = results.find((r) => r.designName === name);
         if (existing) existing.textFile = true;
@@ -339,40 +334,7 @@ export default function AdminCollections() {
         </CardContent>
       </Card>
 
-      {/* Product type dialog for upload */}
-      <Dialog open={showUploadDialog} onOpenChange={setShowUploadDialog}>
-        <DialogContent>
-          <DialogHeader><DialogTitle>Upload Design Assets</DialogTitle></DialogHeader>
-          <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">
-              Found {pendingFiles ? new Set([...(pendingFiles.textFiles?.keys() || []), ...(pendingFiles.notextFiles?.keys() || [])]).size : 0} designs.
-              What product type are these for?
-            </p>
-            <div>
-              <Label>Product Type</Label>
-              <Select value={productType} onValueChange={setProductType}>
-                <SelectTrigger><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="save_the_dates">Save the Dates</SelectItem>
-                  <SelectItem value="invitations">Invitations</SelectItem>
-                  <SelectItem value="on_the_day">On the Day</SelectItem>
-                  <SelectItem value="thank_yous">Thank Yous</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            {pendingFiles && (
-              <div className="text-xs text-muted-foreground space-y-1">
-                <p>Text versions: {pendingFiles.textFiles.size} files</p>
-                <p>No-text versions: {pendingFiles.notextFiles.size} files</p>
-              </div>
-            )}
-            <Button onClick={processUpload} className="w-full">
-              <Package className="h-4 w-4 mr-2" />
-              Process & Upload
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* Upload dialog removed — uploads process immediately */}
 
       {/* Search */}
       {collections.length > 10 && (
